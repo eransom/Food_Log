@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FoodSearch from './foodSearch'
 // import MealList from './mealList'
+import { Link } from 'react-router';
 import base from './config'
 import './App.css';
 
@@ -55,12 +55,11 @@ class App extends Component {
         <h1>Food Log</h1>
         <input ref={element => this.email = element} placeholder="Email Address"/>
         <input ref={element => this.password = element} placeholder="Password"/>
-        <button onClick={this.signIn.bind(this)} className="log-in">Login</button>
+        <button onClick={this.signIn.bind(this)}  className="log-in"><Link to="/foodSearch">Login</Link></button>
         <button onClick={this.signUp.bind(this)}>Sign Up</button>
         <button onClick={this.signOut.bind(this)} className="log-in">Sign Out</button>
         <br />
         <br />
-        <FoodSearch />
       </div>
     );
   }
