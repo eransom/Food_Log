@@ -52,14 +52,14 @@ class FoodSearch extends Component {
     }
     let newItemArray = this.state.item.concat(newItem)
     this.setState({
-      item: newItemArray
+      mealList: newItemArray
     })
     console.log('In Meal List: ', newItemArray)
   }
 
   render() {
     return (
-      <div>
+      <div className="App">
         <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
         <br />
         <button onClick={this.addFoodItem.bind(this)}>Search</button>
