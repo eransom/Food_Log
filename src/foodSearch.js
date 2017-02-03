@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import Link from 'react-router'
+import { hashHistory } from 'react-router'
 import './App.css'
 import axios from 'axios'
 import base from './config'
@@ -22,6 +24,12 @@ class FoodSearch extends Component {
     asArray: true
   });
 
+  }
+
+  signOut(e){
+    e.preventDefault()
+    base.unauth()
+    console.log('signed out: ')
   }
 
   addFoodItem(e) {
@@ -60,6 +68,11 @@ class FoodSearch extends Component {
   render() {
     return (
       <div className="App">
+        <br />
+        <button onClick={this.signOut.bind(this)} onMouseUp={()=>hashHistory.goBack()} className="log-in">Sign Out</button>
+        <br />
+        <br />
+        <br />
         <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
         <br />
         <button onClick={this.addFoodItem.bind(this)}>Search</button>
