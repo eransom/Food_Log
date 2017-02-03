@@ -49,6 +49,7 @@ class App extends Component {
         alert('wrong password')
       } else if (user) {
         console.log(user.email)
+        return <Link to="foodSearch">Login</Link>
             this.setState({
               userName: user.email
             })
@@ -62,7 +63,7 @@ class App extends Component {
         <h1>Food Log</h1>
         <input ref={element => this.email = element} placeholder="Email Address"/>
         <input ref={element => this.password = element} placeholder="Password"/>
-        <button onClick={this.signIn.bind(this)}  className="log-in"><Link to="foodSearch">Login</Link></button>
+        <button onClick={this.signIn.bind(this)} className="log-in">Log In</button>
         <button onClick={this.signUp.bind(this)}>Sign Up</button>
 
         <br />
