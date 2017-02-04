@@ -81,9 +81,9 @@ class FoodSearch extends Component {
         {this.state.results.map((result, index, id, uid) => {
           return (
             <a className="searchItems" href="#" onClick={this.addToMealList.bind(this)} ref={item => this.itemClicked = item}>
-              <span key={uid}>{result.fields.brand_name} - </span>
-              <span key={index}>{result.fields.item_name} </span>
-              <span key={id}>{result.fields.nf_calories} - calories</span>
+              <span className="items" key={uid}>{result.fields.brand_name} - </span>
+              <span className="items" key={index}>{result.fields.item_name} </span>
+              <span className="items" key={id}>{result.fields.nf_calories} - calories</span>
             </a>
           )
         })}
