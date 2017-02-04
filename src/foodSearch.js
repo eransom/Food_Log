@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { hashHistory } from 'react-router'
 import './App.css'
 import axios from 'axios'
 import base from './config'
@@ -22,6 +23,13 @@ class FoodSearch extends Component {
     asArray: true
   });
 
+  }
+
+  signOut(e){
+    e.preventDefault()
+    base.unauth()
+    hashHistory.push("/")
+    console.log('signed out: ')
   }
 
   addFoodItem(e) {
@@ -60,17 +68,23 @@ class FoodSearch extends Component {
   render() {
     return (
       <div className="App">
+        <br />
+        <button onClick={this.signOut.bind(this)} className="log-in">Sign Out</button>
+        <br />
+        <br />
+        <br />
         <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
         <br />
         <button onClick={this.addFoodItem.bind(this)}>Search</button>
         <br />
         <br />
-        {this.state.results.map((result, index, id) => {
+        {this.state.results.map((result, index, id, uid) => {
           return (
-            <div>
-              <a href="#" onClick={this.addToMealList.bind(this)} ref={item => this.itemClicked = item} key={index}>{result.fields.item_name} </a>
-              <span key={id}>{result.fields.nf_calories} calories</span>
-            </div>
+            <a className="searchItems" href="#" onClick={this.addToMealList.bind(this)} ref={item => this.itemClicked = item}>
+              <span key={uid}>{result.fields.brand_name} - </span>
+              <span key={index}>{result.fields.item_name} </span>
+              <span key={id}>{result.fields.nf_calories} - calories</span>
+            </a>
           )
         })}
           <h2>Meal List</h2>
