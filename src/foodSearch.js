@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Link from 'react-router'
 import { hashHistory } from 'react-router'
 import './App.css'
 import axios from 'axios'
@@ -29,6 +28,7 @@ class FoodSearch extends Component {
   signOut(e){
     e.preventDefault()
     base.unauth()
+    hashHistory.push("/")
     console.log('signed out: ')
   }
 
@@ -69,7 +69,7 @@ class FoodSearch extends Component {
     return (
       <div className="App">
         <br />
-        <button onClick={this.signOut.bind(this)} onMouseUp={()=>hashHistory.goBack()} className="log-in">Sign Out</button>
+        <button onClick={this.signOut.bind(this)} className="log-in">Sign Out</button>
         <br />
         <br />
         <br />

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import MealList from './mealList'
-import { Link } from 'react-router';
+import { hashHistory } from 'react-router';
 import base from './config'
 import './App.css';
 
@@ -36,7 +35,7 @@ class App extends Component {
        password: this.password.value
      }, this.authStateChanged.bind(this)).catch(err => console.error(err))
       console.log('Logged in as: ',)
-      }
+  }
 
     signOut(){
       base.unauth()
@@ -49,12 +48,12 @@ class App extends Component {
         alert('wrong password')
       } else if (user) {
         console.log(user.email)
-        return <Link to="foodSearch">Login</Link>
             this.setState({
               userName: user.email
             })
-          }
+        hashHistory.push("/foodSearch")
         }
+    }
 
   render() {
 
