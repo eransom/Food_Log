@@ -32,7 +32,7 @@ class FoodSearch extends Component {
     console.log('signed out: ')
   }
 
-  addFoodItem(e) {
+  searchFoodItem(e) {
     e.preventDefault()
         let item = this.searchInput.value
         let newFoodItem = {
@@ -53,14 +53,16 @@ class FoodSearch extends Component {
         })
   }
 
-  addToMealList() {
-    let item = this.itemClicked.value
-    let newItem = {
-      item: item
-    }
-    let newItemArray = this.state.item.concat(newItem)
+  addToMealList(e) {
+    e.preventDefault()
+    let item = this.itemClicked.text
+    console.log('Item is: ', item)
+    // let newItem = {
+      // item: item
+    // }
+    let newItemArray = this.state.item.concat(item)
     this.setState({
-      mealList: newItemArray
+      item: newItemArray
     })
     console.log('In Meal List: ', newItemArray)
   }
@@ -75,20 +77,20 @@ class FoodSearch extends Component {
         <br />
         <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
         <br />
-        <button onClick={this.addFoodItem.bind(this)}>Search</button>
+        <button onClick={this.searchFoodItem.bind(this)}>Search</button>
         <br />
         <br />
         {this.state.results.map((result, index, id, uid) => {
           return (
-            <a className="searchItems" href="#" onClick={this.addToMealList.bind(this)} ref={item => this.itemClicked = item}>
-              <span key={uid}>{result.fields.brand_name} - </span>
-              <span key={index}>{result.fields.item_name} </span>
-              <span key={id}>{result.fields.nf_calories} - calories</span>
+            <a className="searchItems" href="" onClick={this.addToMealList.bind(this)} ref={item => this.itemClicked = item}>
+              <span className="items" key={uid} >{result.fields.brand_name} - </span>
+              <span className="items" key={index} >{result.fields.item_name}  </span>
+              <span className="items" key={id} >{result.fields.nf_calories} - calories</span>
             </a>
           )
         })}
           <h2>Meal List</h2>
-          <ul>
+          <ul className="mealList">
             <li>{this.state.item}</li>
           </ul>
       </div>
