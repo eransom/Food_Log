@@ -10,7 +10,6 @@ class FoodSearch extends Component {
     this.state = {
       foodItems: [],
       results: [],
-      mealList: [],
       item: []
     }
     this.auth = base.auth()
@@ -66,11 +65,6 @@ class FoodSearch extends Component {
     console.log('In Meal List: ', newItemArray)
   }
 
-
-
-
-
-
   render() {
     return (
       <div className="App">
@@ -84,19 +78,29 @@ class FoodSearch extends Component {
         <button onClick={this.searchFoodItem.bind(this)}>Search</button>
         <br />
         <br />
-        {this.state.results.map((result, index) => {
-          return (
-            <ul className="searchItems" href="" key={index} onClick={this.addToMealList.bind(this, result)} ref={item => this.itemClicked = item}>
-              <li className="items">{result.fields.brand_name} - </li>
-              <li className="items">{result.fields.item_name} - </li>
-              <li className="items"> { result.fields.nf_calories} calories</li>
-            </ul>
-          )
-        })}
-          <h2>Meal List</h2>
-          <ul className="mealList">
-            <li>{this.state.item}</li>
-          </ul>
+        <ul>
+         {this.state.results.map((result, index) => {
+           return (
+             <li className="searchItems" key={index} onClick={this.addToMealList.bind(this, result)}>
+               <span className="items">{result.fields.brand_name} - </span>
+               <span className="items">{result.fields.item_name} - </span>
+               <span className="items"> { result.fields.nf_calories} calories</span>
+             </li>
+           )
+         })
+       }
+       </ul>
+       <h2>Meal List</h2>
+       <ul>
+         {this.state.item.map((item, index) => {
+           return (
+             <li className="searchItems" key={index}>
+               <span>{item}</span>
+             </li>
+           )
+         })
+       }
+      </ul>
       </div>
     )
   }
