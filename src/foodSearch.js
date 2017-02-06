@@ -11,7 +11,7 @@ class FoodSearch extends Component {
       foodItems: [],
       results: [],
       mealList: [],
-      item: ""
+      item: []
     }
     this.auth = base.auth()
   }
@@ -34,9 +34,9 @@ class FoodSearch extends Component {
 
   searchFoodItem(e) {
     e.preventDefault()
-        let item = this.searchInput.value
+        let searchedItem = this.searchInput.value
         let newFoodItem = {
-          item: item,
+          item: searchedItem,
         }
         let newFoodItemArray = this.state.foodItems.concat(newFoodItem)
         console.log('FoodItem is: ', newFoodItem)
@@ -53,19 +53,23 @@ class FoodSearch extends Component {
         })
   }
 
-  addToMealList(e) {
-    e.preventDefault()
-    let item = this.itemClicked.text
-    console.log('Item is: ', item)
+  addToMealList(result) {
+    let pickedItem = `${result.fields.brand_name}-${result.fields.item_name}-${result.fields.nf_calories}-calories`
+    console.log('Item is: ', pickedItem)
     // let newItem = {
       // item: item
     // }
-    let newItemArray = this.state.item.concat(item)
+    let newItemArray = this.state.item.concat(pickedItem)
     this.setState({
       item: newItemArray
     })
     console.log('In Meal List: ', newItemArray)
   }
+
+
+
+
+
 
   render() {
     return (
@@ -80,13 +84,13 @@ class FoodSearch extends Component {
         <button onClick={this.searchFoodItem.bind(this)}>Search</button>
         <br />
         <br />
-        {this.state.results.map((result, index, id, uid) => {
+        {this.state.results.map((result, index) => {
           return (
-            <a className="searchItems" href="" onClick={this.addToMealList.bind(this)} ref={item => this.itemClicked = item}>
-              <span className="items" key={uid} >{result.fields.brand_name} - </span>
-              <span className="items" key={index} >{result.fields.item_name}  </span>
-              <span className="items" key={id} >{result.fields.nf_calories} - calories</span>
-            </a>
+            <ul className="searchItems" href="" key={index} onClick={this.addToMealList.bind(this, result)} ref={item => this.itemClicked = item}>
+              <li className="items">{result.fields.brand_name} - </li>
+              <li className="items">{result.fields.item_name} - </li>
+              <li className="items"> { result.fields.nf_calories} calories</li>
+            </ul>
           )
         })}
           <h2>Meal List</h2>
