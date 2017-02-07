@@ -10,7 +10,9 @@ class FoodSearch extends Component {
     this.state = {
       foodItems: [],
       results: [],
-      item: []
+      item: [],
+      calories: [],
+      total: ''
     }
     this.auth = base.auth()
   }
@@ -54,36 +56,55 @@ class FoodSearch extends Component {
   }
 
   addToMealList(result) {
-    let pickedItem = `${result.fields.brand_name}-${result.fields.item_name}-${result.fields.nf_calories}-calories`
+    let pickedItem = result
     console.log('pickedItem is: ', pickedItem)
-    // let newItem = {
-      // item: item
-    // }
     let newItemArray = this.state.item.concat(pickedItem)
     this.setState({
-      item: newItemArray
+      item: newItemArray,
+      results: []
     })
     console.log('newItemArray In Meal List: ', newItemArray)
+    let calories = result.fields.nf_calories
+    let newCalorieArray = this.state.calories.concat(calories)
+    this.setState({
+      calories: newCalorieArray
+    })
+    console.log('newCalorieArray is: ', newCalorieArray)
+    function getSum(total, num) {
+    return total + Math.round(num);
+    }
+    let totalCalories = newCalorieArray.reduce(getSum);
+    console.log('Total Calories is: ', totalCalories)
+    this.setState ({
+      total: totalCalories
+    })
   }
+
 
 
   render() {
     return (
       <div className="App">
-        <br />
         <button onClick={this.signOut.bind(this)} className="log-in">Sign Out</button>
-        <br />
-        <br />
-        <br />
         <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
-        <br />
         <button onClick={this.searchFoodItem.bind(this)}>Search</button>
-        <br />
-        <br />
-        <ul>
-         {this.state.results.map((result, index) => {
+      <ul>
+        {this.state.results.map((result, index) => {
+          return (
+            <li className="searchItems" key={index} onClick={this.addToMealList.bind(this, result)}>
+              <span className="items">{result.fields.brand_name} - </span>
+              <span className="items">{result.fields.item_name} - </span>
+              <span className="items"> { result.fields.nf_calories} calories</span>
+            </li>
+            )
+          })
+        }
+       </ul>
+       <h2>Meal List</h2>
+       <ul>
+         {this.state.item.map((result, index) => {
            return (
-             <li className="searchItems" key={index} onClick={this.addToMealList.bind(this, result)}>
+             <li className="searchItems" key={index}>
                <span className="items">{result.fields.brand_name} - </span>
                <span className="items">{result.fields.item_name} - </span>
                <span className="items"> { result.fields.nf_calories} calories</span>
@@ -91,18 +112,8 @@ class FoodSearch extends Component {
            )
          })
        }
-       </ul>
-       <h2>Meal List</h2>
-       <ul>
-         {this.state.item.map((item, index) => {
-           return (
-             <li className="searchItems" key={index}>
-               <span>{item}</span>
-             </li>
-           )
-         })
-       }
       </ul>
+      <span ><strong>Total Calories: </strong>{this.state.total}</span>
       </div>
     )
   }

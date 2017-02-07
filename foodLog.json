@@ -2,11 +2,13 @@
   "users": {
     "uid" : {
       "username": "",
-      "mealList": {
-        "mealID": {
-          "1": "banana",
-          "2": "carrot",
-          "1": {"foodName": "banana", "calories": "200"}
+      "mealID": {
+        "mealList": {
+          "foodItems": {
+            "1": {"brandName": "Chiquita", "itemName": "banana", "calories": "200"}
+          }
         }
       }
+    }
   }
+}
