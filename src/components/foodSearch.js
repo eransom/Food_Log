@@ -53,7 +53,7 @@ class FoodSearch extends Component {
           console.log(response.data.hits)
           this.searchInput.value = ""
         })
-  }
+   }
 
   addToMealList(result) {
     let pickedItem = result
@@ -80,6 +80,30 @@ class FoodSearch extends Component {
     })
   }
 
+  showMealList() {
+    if(this.state.item != 0) {
+      return 'Meal List'
+    }
+  }
+
+  showQuantity() {
+    if(this.state.item != 0) {
+      return <div className="qty">
+               <h5 className="qtyHeader">QTY</h5>
+                 <div className="qtyButtons">
+                 <button>-</button>
+                 <button>+</button>
+               </div>
+             </div>
+    }
+  }
+
+  caloriesOnPage(){
+ if (this.state.total.length !== 0) {
+   return `${'Total:'} ${this.state.total} ${'Calories'}`
+ }
+}
+
 
 
   render() {
@@ -100,11 +124,12 @@ class FoodSearch extends Component {
           })
         }
        </ul>
-       <h2>Meal List</h2>
+         <h2 className="mealList">{this.showMealList()}</h2>
        <ul>
          {this.state.item.map((result, index) => {
            return (
              <li className="searchItems" key={index}>
+               {this.showQuantity()}
                <span className="items">{result.fields.brand_name} - </span>
                <span className="items">{result.fields.item_name} - </span>
                <span className="items"> { result.fields.nf_calories} calories</span>
@@ -113,7 +138,7 @@ class FoodSearch extends Component {
          })
        }
       </ul>
-      <span ><strong>Total Calories: </strong>{this.state.total}</span>
+      <span ><strong>{this.caloriesOnPage()}</strong></span>
       </div>
     )
   }

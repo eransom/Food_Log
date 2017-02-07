@@ -3,17 +3,33 @@
 }
 
 .searchItems {
+  display: inline-block;
   display: flex;
   flex-direction: row;
   justify-content: center;
   list-style: none;
+  position: relative;
 }
 
 
 
 .mealList {
+}
+
+.qty {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  list-style: none;
+  position: absolute;
+
+}
+
+.qtyHeader {
+  position: absolute;
+  left: -250px;
+  top: -20px;
+}
+
+.qtyButtons {
+  position: absolute;
+  left: -215px;
+  height: 3px;
 }
