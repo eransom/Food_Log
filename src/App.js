@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { hashHistory } from 'react-router';
 import base from './config'
-import FoodSearch from './foodSearch'
 import './App.css';
 
 class App extends Component {

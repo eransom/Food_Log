@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import { hashHistory } from 'react-router'
-import './App.css'
+import '../App.css'
 import axios from 'axios'
-import base from './config'
+import base from '../config'
 
 class FoodSearch extends Component {
   constructor() {
@@ -38,7 +38,7 @@ class FoodSearch extends Component {
           item: searchedItem,
         }
         let newFoodItemArray = this.state.foodItems.concat(newFoodItem)
-        console.log('FoodItem is: ', newFoodItem)
+        console.log('Searched Food Item is: ', newFoodItem)
         this.setState({
           foodItems: newFoodItemArray
         })
@@ -49,12 +49,13 @@ class FoodSearch extends Component {
             results: response.data.hits
           })
           console.log(response.data.hits)
+          this.searchInput.value = ""
         })
   }
 
   addToMealList(result) {
     let pickedItem = `${result.fields.brand_name}-${result.fields.item_name}-${result.fields.nf_calories}-calories`
-    console.log('Item is: ', pickedItem)
+    console.log('pickedItem is: ', pickedItem)
     // let newItem = {
       // item: item
     // }
@@ -62,8 +63,9 @@ class FoodSearch extends Component {
     this.setState({
       item: newItemArray
     })
-    console.log('In Meal List: ', newItemArray)
+    console.log('newItemArray In Meal List: ', newItemArray)
   }
+
 
   render() {
     return (
