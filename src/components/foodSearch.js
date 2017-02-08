@@ -82,16 +82,17 @@ class FoodSearch extends Component {
     }
   }
 
-  showQuantity() {
+  showQuantity(result) {
     if(this.state.mealList.length !== 0) {
+      console.log('result is: ', result)
       return <div className="qty">
                <h5 className="qtyHeader">QTY</h5>
                <div className="qtyButtons">
                  <button className="btn">-</button>
                  <button onClick={this.increaseQty.bind(this)} className="btn">+</button>
                </div>
-                 <span className="qtyNum">1</span>
-             </div>
+                 <span className="qtyNum">{result.qty}</span>
+               </div>
     }
   }
   // ===============THIS WILL CHANGE ================
@@ -132,7 +133,7 @@ class FoodSearch extends Component {
          {this.state.mealList.map((result, index) => {
            return (
              <li className="searchItems" key={index}>
-               {this.showQuantity()}
+               {this.showQuantity(result)}
                <span className="items">{result.brand_name} - </span>
                <span className="items">{result.item_name} - </span>
                <span className="items"> { result.nf_calories} calories</span>
