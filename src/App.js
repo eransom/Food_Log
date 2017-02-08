@@ -59,7 +59,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Food Log</h1>
+        <h1 className="foodLogHeader">Food Log</h1>
         <input ref={element => this.email = element} placeholder="Email Address"/>
         <input ref={element => this.password = element} placeholder="Password"/>
         <button onClick={this.signIn.bind(this)} className="log-in">Log In</button>
