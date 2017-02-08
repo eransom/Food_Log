@@ -2,34 +2,56 @@
   text-align: center;
 }
 
+.signOut {
+  border: 1px solid blue;
+  border-radius: 5px;
+  color: blue;
+  display: block;
+  margin-left: auto;
+  margin-right: 80px;
+  margin-top: 20px;
+}
+
 .searchItems {
-  display: inline-block;
   display: flex;
   flex-direction: row;
   justify-content: center;
   list-style: none;
-  position: relative;
 }
 
-
-
 .mealList {
+  color: midnightblue;
+}
+
+.calories {
+  color: blue;
 }
 
 .qty {
   display: flex;
-  position: absolute;
+  margin-right: 10px;
 
 }
 
 .qtyHeader {
-  position: absolute;
-  left: -250px;
-  top: -20px;
+  color: green;
+  margin-right: 5px;
+  margin-top: 2px;
 }
 
 .qtyButtons {
-  position: absolute;
-  left: -215px;
-  height: 3px;
+  display: flex;
+  height: 10px;
+  margin-right: 8px;
+}
+
+.btn {
+  padding-bottom: 15px;
+}
+
+.qtyNum {
+  border: 1px solid black;
+  font-size: 12px;
+  width: 12px;
+  height: 13px;
 }

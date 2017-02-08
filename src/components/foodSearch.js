@@ -12,7 +12,8 @@ class FoodSearch extends Component {
       results: [],
       item: [],
       calories: [],
-      total: ''
+      total: '',
+      qty: 1
     }
     this.auth = base.auth()
   }
@@ -81,21 +82,27 @@ class FoodSearch extends Component {
   }
 
   showMealList() {
-    if(this.state.item != 0) {
+    if(this.state.item !== 0) {
       return 'Meal List'
     }
   }
 
   showQuantity() {
-    if(this.state.item != 0) {
+    if(this.state.item !== 0) {
       return <div className="qty">
                <h5 className="qtyHeader">QTY</h5>
-                 <div className="qtyButtons">
-                 <button>-</button>
-                 <button>+</button>
+               <div className="qtyButtons">
+                 <button className="btn">-</button>
+                 <button onClick={this.increaseQty.bind(this)} className="btn">+</button>
                </div>
+                 <span className="qtyNum">{this.state.qty}</span>
              </div>
     }
+  }
+
+  increaseQty() {
+    let qty = this.state.qty++
+    console.log('qty is: ', qty)
   }
 
   caloriesOnPage(){
@@ -109,7 +116,7 @@ class FoodSearch extends Component {
   render() {
     return (
       <div className="App">
-        <button onClick={this.signOut.bind(this)} className="log-in">Sign Out</button>
+        <button onClick={this.signOut.bind(this)} className="signOut">Sign Out</button>
         <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
         <button onClick={this.searchFoodItem.bind(this)}>Search</button>
       <ul>
@@ -138,7 +145,7 @@ class FoodSearch extends Component {
          })
        }
       </ul>
-      <span ><strong>{this.caloriesOnPage()}</strong></span>
+      <span ><strong className="calories">{this.caloriesOnPage()}</strong></span>
       </div>
     )
   }
