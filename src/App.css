@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.foodLogHeader {
+  color: midnightblue;
+}
+
 .signOut {
   border: 1px solid blue;
   border-radius: 5px;
@@ -46,12 +50,14 @@
 }
 
 .btn {
+  color: green;
   padding-bottom: 15px;
 }
 
 .qtyNum {
   border: 1px solid black;
   font-size: 12px;
+  opacity: .7;
   width: 12px;
   height: 13px;
 }
