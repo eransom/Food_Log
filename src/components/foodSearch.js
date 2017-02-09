@@ -59,22 +59,22 @@ class FoodSearch extends Component {
 
 
     // =======Possibly change this to derive calories and qty from the state of the mealList "picked item"
-    let calories = result.fields.nf_calories
-    let newCalorieArray = this.state.calories.concat(calories)
-    this.setState({
-      calories: newCalorieArray
-    })
-    console.log('newCalorieArray is: ', newCalorieArray)
-    function getSum(total, num) {
-    return total + Math.round(num);
+      let calories = result.fields.nf_calories
+      let newCalorieArray = this.state.calories.concat(calories)
+      this.setState({
+        calories: newCalorieArray
+      })
+      console.log('newCalorieArray is: ', newCalorieArray)
+      function getSum(total, num) {
+      return total + Math.round(num);
+      }
+      //=========Change this up to .reduce from the "item" and not calories or total
+      let totalCalories = newCalorieArray.reduce(getSum);
+      console.log('Total Calories is: ', totalCalories)
+      this.setState ({
+        total: totalCalories
+      })
     }
-    //=========Change this up to .reduce from the "item" and not calories or total
-    let totalCalories = newCalorieArray.reduce(getSum);
-    console.log('Total Calories is: ', totalCalories)
-    this.setState ({
-      total: totalCalories
-    })
-  }
 
   showMealList() {
     if(this.state.mealList.length !== 0) {
@@ -84,27 +84,50 @@ class FoodSearch extends Component {
 
   showQuantity(result) {
     if(this.state.mealList.length !== 0) {
-      console.log('result is: ', result)
       return <div className="qty">
                <h5 className="qtyHeader">QTY</h5>
                <div className="qtyButtons">
-                 <button className="btn">-</button>
-                 <button onClick={this.increaseQty.bind(this)} className="btn">+</button>
+                 <button onClick={this.decreaseQty.bind(this, result)} className="btn">-</button>
+                 <button onClick={this.increaseQty.bind(this, result)} className="btn">+</button>
                </div>
-                 <span className="qtyNum">{result.qty}</span>
-               </div>
+               <span className="qtyNum">{result.qty}</span>
+            </div>
     }
   }
-  // ===============THIS WILL CHANGE ================
-  increaseQty() {
-    let qty = this.state.qty++
-    console.log('qty increment is: ', qty)
+  // ===============THIS WILL ONLY DEAL WITH INCREMENTING QTY NUM AND SAVING THIS IN STATE================
+  increaseQty(result) {
+    let newQty = this.state.mealList.map((foodItem) => {
+      if(foodItem.item_id === result.item_id) {
+        result.qty++
+        return result
+      } else {
+        return foodItem
+      }
+    })
+    this.setState({
+      mealList: newQty
+    })
+  }
+
+  decreaseQty(result) {
+    let newQty = this.state.mealList.map((foodItem) => {
+      if(foodItem.item_id === result.item_id && result.qty >= 2) {
+        result.qty--
+        return result
+      } else {
+        return foodItem
+      }
+    })
+    this.setState({
+      mealList: newQty
+    })
   }
 
 // ===================This will have to change based on removing the state of "total"
-  caloriesOnPage(){
- if (this.state.total.length !== 0) {
-   return `${'Total:'} ${this.state.total} ${'Calories'}`
+  caloriesOnPage(result){
+ if (this.state.mealList.length !== 0) {
+   let totalCal = result.qty++ * result.nf_calories
+   return `${'Total:'} ${totalCal} ${'Calories'}`
  }
 }
 
@@ -142,7 +165,6 @@ class FoodSearch extends Component {
          })
        }
       </ul>
-      <span ><strong className="calories">{this.caloriesOnPage()}</strong></span>
       </div>
     )
   }
