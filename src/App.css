@@ -29,6 +29,7 @@
 
 .calories {
   color: blue;
+  font-weight: bold;
 }
 
 .qty {
@@ -50,6 +51,7 @@
 }
 
 .btn {
+  box-shadow: 1px 1px 3px -3px rgba(0,0,0,0.65);
   color: green;
   padding-bottom: 15px;
 }
@@ -58,6 +60,13 @@
   border: 1px solid black;
   font-size: 12px;
   opacity: .7;
-  width: 12px;
+  width: 13px;
   height: 13px;
+}
+
+.delete-btn {
+  box-shadow: 1px 1px 4px -2px rgba(0,0,0,0.65);
+  color: red;
+  opacity: .7;
+  margin-left: 10px;
 }
