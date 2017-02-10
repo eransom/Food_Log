@@ -10,9 +10,6 @@ class FoodSearch extends Component {
     this.state = {
       results: [],
       mealList: [],
-      //============TAKE total, qty & claories out of state and use the mealList "picked" state to deal with total & qty===//
-      calories: [],
-      total: ''
     }
     this.auth = base.auth()
   }
@@ -55,30 +52,19 @@ class FoodSearch extends Component {
       results: []
     })
     console.log('newItemsArray In Meal List: ', newItemsArray)
-
-
-
-    // =======Possibly change this to derive calories and qty from the state of the mealList "picked item"
-      let calories = result.fields.nf_calories
-      let newCalorieArray = this.state.calories.concat(calories)
-      this.setState({
-        calories: newCalorieArray
-      })
-      console.log('newCalorieArray is: ', newCalorieArray)
-      function getSum(total, num) {
-      return total + Math.round(num);
-      }
-      //=========Change this up to .reduce from the "item" and not calories or total
-      let totalCalories = newCalorieArray.reduce(getSum);
-      console.log('Total Calories is: ', totalCalories)
-      this.setState ({
-        total: totalCalories
-      })
-    }
+  }
 
   showMealList() {
     if(this.state.mealList.length !== 0) {
       return 'Meal List'
+    }
+  }
+
+  getTotalCalories() {
+    let totalCalories = this.state.mealList.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
+    console.log('totalCalories is: ', totalCalories)
+    if(this.state.mealList.length !== 0) {
+      return <span className="calories">TOTAL: {totalCalories} Calories</span>
     }
   }
 
@@ -123,13 +109,18 @@ class FoodSearch extends Component {
     })
   }
 
+  deleteItem(itemDeleted) {
+ var listAfterDelete = this.state.mealList.filter(result => result !== itemDeleted)
+ this.setState({
+   mealList: listAfterDelete
+    })
+    console.log('After deleteItem mealList is: ', listAfterDelete)
+  }
+
 // ===================This will have to change based on removing the state of "total"
-  caloriesOnPage(result){
- if (this.state.mealList.length !== 0) {
-   let totalCal = result.qty++ * result.nf_calories
-   return `${'Total:'} ${totalCal} ${'Calories'}`
- }
-}
+//   caloriesOnPage(result){
+//
+// }
 
 
 
@@ -160,11 +151,13 @@ class FoodSearch extends Component {
                <span className="items">{result.brand_name} - </span>
                <span className="items">{result.item_name} - </span>
                <span className="items"> { result.nf_calories} calories</span>
+               <span><button className="delete-btn" onClick={this.deleteItem.bind(this, result)}>X</button></span>
              </li>
            )
          })
        }
       </ul>
+       {this.getTotalCalories()}
       </div>
     )
   }
