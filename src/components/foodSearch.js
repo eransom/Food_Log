@@ -140,23 +140,29 @@ class FoodSearch extends Component {
     return (
       <div>
         <button className="signOut" onClick={this.signOut.bind(this)}>Sign Out</button>
-        <div className="search">
-          <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
-          <button onClick={this.searchFoodItem.bind(this)}>Search</button>
-        </div>
-        <ul className="searchList">
-          {this.state.results.map((result, index) => {
-            return (
-              <li className="searchItems" key={index} onClick={this.addToMealList.bind(this, result)}>
-                <span className="searchSpan1">{result.fields.brand_name} - </span>
-                <span className="searchSpan2">{result.fields.item_name} - </span>
-                <span className="searchSpan3"> { result.fields.nf_calories} calories</span>
-              </li>
-              )
-            })
-          }
-         </ul>
-          {this.showMealList()}
+        <div className="mealListPage">
+          <div className="search">
+            <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
+            <button onClick={this.searchFoodItem.bind(this)}>Search</button>
+          </div>
+          <ul className="searchList">
+            {this.state.results.map((result, index) => {
+              return (
+                <li className="searchItems" key={index} onClick={this.addToMealList.bind(this, result)}>
+                  <span className="searchSpan1">{result.fields.brand_name} - </span>
+                  <span className="searchSpan2">{result.fields.item_name} - </span>
+                  <span className="searchSpan3"> { result.fields.nf_calories} calories</span>
+                </li>
+                )
+              })
+            }
+           </ul>
+           {this.showMealList()}
+         </div>
+         <div className="budget">
+           <h2>CALORIE BUDGET: 2000</h2>
+           <h2>DAILY TOTAL: 1800</h2>
+         </div>
       </div>
     )
   }
