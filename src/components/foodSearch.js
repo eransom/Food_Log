@@ -56,7 +56,26 @@ class FoodSearch extends Component {
 
   showMealList() {
     if(this.state.mealList.length !== 0) {
-      return 'Meal List'
+      return <div className="mealList">
+               <h2 className="mealHeader">Breakfast</h2>
+               <div className="mealItemContain">
+                  <ul className="mealListUl">
+                    {this.state.mealList.map((result, index) => {
+                      return (
+                        <li className="mealListItems" key={index}>
+                          {this.showQuantity(result)}
+                          <span className="itemsBrand">{result.brand_name} - </span>
+                          <span className="itemsName">{result.item_name} - </span>
+                          <span className="items"> { result.nf_calories} calories</span>
+                          <span><button className="delete-btn" onClick={this.deleteItem.bind(this, result)}>X</button></span>
+                        </li>
+                        )
+                      })
+                    }
+                 </ul>
+               </div>
+               {this.getTotalCalories()}
+             </div>
     }
   }
 
@@ -73,8 +92,8 @@ class FoodSearch extends Component {
       return <div className="qty">
                <h5 className="qtyHeader">QTY</h5>
                <div className="qtyButtons">
-                 <button onClick={this.decreaseQty.bind(this, result)} className="btn">-</button>
-                 <button onClick={this.increaseQty.bind(this, result)} className="btn">+</button>
+                 <button onClick={this.decreaseQty.bind(this, result)} className="qtyNumBtn">-</button>
+                 <button onClick={this.increaseQty.bind(this, result)} className="qtyNumBtn">+</button>
                </div>
                <span className="qtyNum">{result.qty}</span>
             </div>
@@ -119,38 +138,25 @@ class FoodSearch extends Component {
 
   render() {
     return (
-      <div className="App">
-        <button onClick={this.signOut.bind(this)} className="signOut">Sign Out</button>
-        <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
-        <button onClick={this.searchFoodItem.bind(this)}>Search</button>
-        <ul>
+      <div>
+        <button className="signOut" onClick={this.signOut.bind(this)}>Sign Out</button>
+        <div className="search">
+          <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
+          <button onClick={this.searchFoodItem.bind(this)}>Search</button>
+        </div>
+        <ul className="searchList">
           {this.state.results.map((result, index) => {
             return (
               <li className="searchItems" key={index} onClick={this.addToMealList.bind(this, result)}>
-                <span className="items">{result.fields.brand_name} - </span>
-                <span className="items">{result.fields.item_name} - </span>
-                <span className="items"> { result.fields.nf_calories} calories</span>
+                <span className="searchSpan1">{result.fields.brand_name} - </span>
+                <span className="searchSpan2">{result.fields.item_name} - </span>
+                <span className="searchSpan3"> { result.fields.nf_calories} calories</span>
               </li>
               )
             })
           }
          </ul>
-         <h2 className="mealList">{this.showMealList()}</h2>
-         <ul>
-           {this.state.mealList.map((result, index) => {
-             return (
-               <li className="searchItems" key={index}>
-                 {this.showQuantity(result)}
-                 <span className="items">{result.brand_name} - </span>
-                 <span className="items">{result.item_name} - </span>
-                 <span className="items"> { result.nf_calories} calories</span>
-                 <span><button className="delete-btn" onClick={this.deleteItem.bind(this, result)}>X</button></span>
-               </li>
-               )
-             })
-           }
-        </ul>
-        {this.getTotalCalories()}
+          {this.showMealList()}
       </div>
     )
   }

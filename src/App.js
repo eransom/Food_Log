@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { hashHistory } from 'react-router';
-import base from './config'
+import base from './config';
 import './App.css';
 
 class App extends Component {
@@ -58,17 +58,15 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
+      <div className="login">
         <h1 className="foodLogHeader">Food Log</h1>
         <input ref={element => this.email = element} placeholder="Email Address"/>
         <input ref={element => this.password = element} placeholder="Password"/>
         <button onClick={this.signIn.bind(this)} className="log-in">Log In</button>
         <button onClick={this.signUp.bind(this)}>Sign Up</button>
-
-        <br />
-        <br />
       </div>
-    );
+
+    )
   }
 }
 
