@@ -9,15 +9,15 @@ class FoodSearch extends Component {
     super()
     this.state = {
       results: [],
-      mealList: [],
+      foodItems: [],
     }
     this.auth = base.auth()
   }
 
   componentDidMount (){
-    base.syncState(`mealList`, {
+    base.syncState(`foodItems`, {
     context: this,
-    state: 'mealList',
+    state: 'foodItems',
     asArray: true
     });
   }
@@ -46,21 +46,21 @@ class FoodSearch extends Component {
     let pickedItem = result.fields
     pickedItem.qty = 1
     console.log('pickedItem is: ', pickedItem)
-    let newItemsArray = this.state.mealList.concat(pickedItem)
+    let newItemsArray = this.state.foodItems.concat(pickedItem)
       this.setState({
-        mealList: newItemsArray,
+        foodItems: newItemsArray,
         results: []
       })
-    console.log('newItemsArray In Meal List: ', newItemsArray)
+    console.log('newItemsArray In foodItems: ', newItemsArray)
   }
 
   showMealList() {
-    if(this.state.mealList.length !== 0) {
+    if(this.state.foodItems.length !== 0) {
       return <div className="mealList">
                <h2 className="mealHeader">Breakfast</h2>
                <div className="mealItemContain">
                   <ul className="mealListUl">
-                    {this.state.mealList.map((result, index) => {
+                    {this.state.foodItems.map((result, index) => {
                       return (
                         <li className="mealListItems" key={index}>
                           {this.showQuantity(result)}
@@ -80,15 +80,15 @@ class FoodSearch extends Component {
   }
 
   getTotalCalories() {
-    let totalCalories = this.state.mealList.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
+    let totalCalories = this.state.foodItems.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
     console.log('totalCalories is: ', totalCalories)
-    if(this.state.mealList.length !== 0) {
+    if(this.state.foodItems.length !== 0) {
       return <span className="calories">TOTAL: {totalCalories} Calories</span>
     }
   }
 
   showQuantity(result) {
-    if(this.state.mealList.length !== 0) {
+    if(this.state.foodItems.length !== 0) {
       return <div className="qty">
                <h5 className="qtyHeader">QTY</h5>
                <div className="qtyButtons">
@@ -101,7 +101,7 @@ class FoodSearch extends Component {
     }
 
   increaseQty(result) {
-    let newQty = this.state.mealList.map((foodItem) => {
+    let newQty = this.state.foodItems.map((foodItem) => {
       if(foodItem.item_id === result.item_id) {
         result.qty++
         return result
@@ -115,7 +115,7 @@ class FoodSearch extends Component {
   }
 
   decreaseQty(result) {
-    let newQty = this.state.mealList.map((foodItem) => {
+    let newQty = this.state.foodItems.map((foodItem) => {
       if(foodItem.item_id === result.item_id && result.qty >= 2) {
         result.qty--
         return result
@@ -124,14 +124,14 @@ class FoodSearch extends Component {
       }
     })
     this.setState({
-      mealList: newQty
+      foodItems: newQty
     })
   }
 
   deleteItem(itemDeleted) {
-    var listAfterDelete = this.state.mealList.filter(result => result !== itemDeleted)
+    var listAfterDelete = this.state.foodItems.filter(result => result !== itemDeleted)
     this.setState({
-      mealList: listAfterDelete
+      foodItems: listAfterDelete
     })
     console.log('After deleteItem mealList is: ', listAfterDelete)
   }

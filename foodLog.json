@@ -1,13 +1,34 @@
 {
   "users": {
     "uid" : {
-      "username": "",
-      "mealID": {
-        "mealList": {
-          "foodItems": {
-            "1": {"brandName": "Chiquita", "itemName": "banana", "calories": "200"}
+      "email": "",
+      "password": "",
+      "calorieGoals": "2000",
+      "meals": {
+        "Feb1417": [
+          {
+            "brand_name": "",
+            "item_id": "",
+            "item_name": "",
+            "key": "",
+            "nf_calories": "number",
+            "nf_serving_size_qty": "number",
+            "nf_serving_size_unit": "",
+            "qty": "number"
           }
-        }
+        ],
+        "Feb1417": [
+          {
+            "brand_name": "",
+            "item_id": "",
+            "item_name": "",
+            "key": "",
+            "nf_calories": "number",
+            "nf_serving_size_qty": "number",
+            "nf_serving_size_unit": "",
+            "qty": "number"
+          }
+        ]
       }
     }
   }

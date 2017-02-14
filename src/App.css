@@ -64,10 +64,10 @@
 
 /*============================MEAL LIST*/
 .mealListPage {
-  background-image: url(Images/bg3.png);
-  background-size: contain;
-  height: 525px;
-  min-height: 525px;
+  /*background-image: url(Images/bg3.png);*/
+  /*background-size: contain;*/
+  /*height: 525px;
+  min-height: 525px;*/
 }
 
 .mealHeader {
@@ -194,4 +194,144 @@
 .budget {
   display: flex;
   justify-content: space-around;
+}
+
+navbar-inner {
+   height: 80px;
+   background: white;
+   filter: none;
+}
+
+.brand {
+   margin-top: 20px;
+   padding-bottom: 8px;
+   max-height: 40px;
+   width: auto;
+   margin-top: 20px;
+   margin-left: 20px;
+}
+
+.login-wraper {
+   -webkit-border-radius: 15px;
+   -moz-border-radius: 15px;
+   -ms-border-radius: 15px;
+   -o-border-radius: 15px;
+   border-radius: 15px;
+   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+   position: relative;
+   top: 50px;
+   left: 50%;
+   display: block;
+   margin-left: -235px;
+   padding: 25px;
+   width: 420px;
+   height: 320px;
+   background: white;
+   text-align: center;
+}
+
+.head-title {
+   font-size: 30px;
+   margin-top: 5px;
+   margin-bottom: 10px;
+   padding-bottom: 25px;
+   border-bottom: none;
+   font-family: 'Lato', Helvetica, sans-serif;
+   font-weight: 300;
+   color: #333333 ;
+   -webkit-font-smoothing: subpixel-antialiased;
+   text-align: center;
+}
+
+.blue {
+   color: #447fc8 ;
+}
+
+.footer {
+   margin-top: 20px;
+}
+
+.navbar-inner {
+   height: auto;
+   height: 50px;
+   background: white;
+   filter: none;
+}
+
+.body {
+   font-family: 'Lato', Helvetica, sans-serif;
+   color: #333333 ;
+   font-size: 15px;
+}
+
+.login {
+   background-color: #fff;
+   border: 1px solid #ccc;
+   width: 250px;
+   display: block;
+   margin: 0 auto;
+   transition: border linear .2s, box-shadow linear .2s;
+   display: inline-block;
+   padding: 4px 6px;
+   margin-bottom: 10px;
+   font-size: 14px;
+   line-height: 20px;
+   color: #555;
+   vertical-align: middle;
+   -webkit-border-radius: 4px;
+   -moz-border-radius: 4px;
+   border-radius: 4px;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-weight: normal;
+}
+
+.button-login {
+   box-shadow: none;
+   margin-left: 0px;
+   padding: 7px 25px;
+   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+   margin-bottom: 0;
+   font-size: 25px;
+   line-height: 10px;
+   text-align: center;
+   vertical-align: middle;
+   cursor: pointer;
+   border-radius: 4px;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   width: 90px;
+   height: 30px;
+   padding: 10px 40px;
+   background-image: none;
+   box-shadow: none;
+}
+
+.second-button-login{
+   box-shadow: none;
+   margin-left: -50px;
+   width: 90px;
+   line-height: 30px;
+   height: 30px;
+}
+
+
+footer.navbar-fixed-bottom {
+ font-size: 16px;
+ font-family: "PT Sans", Arial, Helvetica, sans-serif;
+ line-height: 18px;
+ font-weight: 400;
+ padding-top: 10px;
+ height: 80px;
+ background: white;
+ text-align: center;
+}
+
+button.btn{
+ font-size: 15px;
+}
+
+.noAccount {
+ text-align: center;
+ margin-left: -40px;
 }
