@@ -1,34 +1,46 @@
 .App {
-  /*box-sizing: border-box;*/
-  background: url(../src/Images/bg3.png) no-repeat center center fixed;
+
+}
+
+.background-signin {
+  background: url(../src/img/bg3.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 600px;
-  min-height: 600px;
-  position: static;
-
+  height: 500px;
 }
 
-.login {
-  text-align: center;
+.slogan {
+  font-family: 'Kaushan Script', cursive;
+  color: #1e69a6;
+  text-align: right;
+  font-size: 30px;
+  margin-top: 9px;
+  margin-left: 650px;
+}
+
+.background-signup {
+  background: url(../src/img/bg3.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 500px;
 }
 
 .foodLogHeader {
-  color: midnightblue;
+    color: midnightblue;
 }
 
-/*==============================FOOD SEARCH*/
-
 .signOut {
-  border: 1px solid blue;
-  border-radius: 5px;
-  color: blue;
-  display: block;
-  margin-left: auto;
-  margin-right: 80px;
-  margin-top: 20px;
+    border: 1px solid blue;
+    border-radius: 5px;
+    color: blue;
+    display: block;
+    margin-left: auto;
+    margin-right: 80px;
+    margin-top: 20px;
 }
 
 .search {
@@ -71,7 +83,6 @@
   color: red;
 }
 
-/*============================MEAL LIST*/
 .mealListPage {
   margin-top: -48px;
   height: 501px;
@@ -100,7 +111,7 @@
   padding: 10px 0px;
   position: relative;
   width: 650px;
-  height: 450px;
+  height: 400px;
   text-align: center;
 }
 
@@ -110,7 +121,7 @@
 }
 
 .mealItemContain {
-  height: 300px;
+  height: 270px;
   overflow: scroll;
 }
 
@@ -209,153 +220,195 @@
   justify-content: space-around;
 }
 
-.mealFooter:hover {
-  color: midnightblue;
-  text-decoration: none;
-}
 
 .navbar-inner {
-   height: 80px;
-   background: white;
-   filter: none;
+    height: 65px;
+    background: white;
+    filter: none;
+    display: flex;
+
+}
+
+.App-logo {
+  margin-top: 5px;
+  height: 60px;
+}
+
+.social-media {
+  margin-top: 5px;
+  height: 60px;
+  margin-left: -20px;
 }
 
 .brand {
-   margin-top: 20px;
-   padding-bottom: 8px;
-   max-height: 40px;
-   width: auto;
-   margin-top: 20px;
-   margin-left: 20px;
-}
-
-.container {
-  position: relative;
-  height: 480px;
+    margin-top: 20px;
+    padding-bottom: 8px;
+    max-height: 40px;
+    width: auto;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 .login-wraper {
-   -webkit-border-radius: 15px;
-   -moz-border-radius: 15px;
-   -ms-border-radius: 15px;
-   -o-border-radius: 15px;
-   border-radius: 15px;
-   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-   position: absolute;
-   left: 50%;
-   top: 50%;
-   margin-left: -210px;
-   margin-top: -160px;   display: block;
-   padding: 25px;
-   width: 420px;
-   height: 320px;
-   background: white;
-   text-align: center;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    position: relative;
+    top: 50px;
+    left: 50%;
+    display: block;
+    margin-left: -235px;
+    padding: 25px;
+    width: 420px;
+    height: 320px;
+    background: white;
+    text-align: center;
 }
 
 .head-title {
-   font-size: 30px;
-   margin-top: 5px;
-   margin-bottom: 10px;
-   padding-bottom: 25px;
-   border-bottom: none;
-   font-family: 'Lato', Helvetica, sans-serif;
-   font-weight: 300;
-   color: #333333 ;
-   -webkit-font-smoothing: subpixel-antialiased;
-   text-align: center;
+    font-size: 30px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding-bottom: 25px;
+    border-bottom: none;
+    font-family: 'Lato', Helvetica, sans-serif;
+    font-weight: 300;
+    color: #333333;
+    -webkit-font-smoothing: subpixel-antialiased;
+    text-align: center;
 }
 
 .blue {
-   color: #447fc8 ;
+    color: #1e69a6;
+    font-family: 'Lato', sans-serif;
 }
 
 .footer {
-   margin-top: 20px;
+    margin-top: 20px;
 }
 
-.navbar-inner {
-   height: auto;
-   height: 80px;
-   background: white;
-   filter: none;
-}
+
 
 .body {
-   font-family: 'Lato', Helvetica, sans-serif;
-   color: #333333 ;
-   font-size: 15px;
+    font-family: 'Lato', Helvetica, sans-serif;
+    color: #333333;
+    font-size: 15px;
 }
 
 .login {
-   background-color: #fff;
-   border: 1px solid #ccc;
-   width: 250px;
-   display: block;
-   margin: 0 auto;
-   transition: border linear .2s, box-shadow linear .2s;
-   display: inline-block;
-   padding: 4px 6px;
-   margin-bottom: 10px;
-   font-size: 14px;
-   line-height: 20px;
-   color: #555;
-   vertical-align: middle;
-   -webkit-border-radius: 4px;
-   -moz-border-radius: 4px;
-   border-radius: 4px;
-   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-   font-weight: normal;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 250px;
+    display: block;
+    margin: 0 auto;
+    transition: border linear .2s, box-shadow linear .2s;
+    display: inline-block;
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555;
+    vertical-align: middle;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
 }
 
 .button-login {
-   box-shadow: none;
-   margin-left: 0px;
-   padding: 7px 25px;
-   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-   margin-bottom: 0;
-   font-size: 25px;
-   line-height: 10px;
-   text-align: center;
-   vertical-align: middle;
-   cursor: pointer;
-   border-radius: 4px;
-   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-   width: 90px;
-   height: 30px;
-   /*padding: 10px 40px;*/
-   background-image: none;
-   box-shadow: none;
+    box-shadow: none;
+    margin-left: 0px;
+    padding: 7px 25px;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    margin-bottom: 0;
+    font-size: 25px;
+    line-height: 10px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 90px;
+    height: 30px;
+    padding: 10px 40px;
+    background-image: none;
+    box-shadow: none;
 }
 
 .second-button-login{
-   box-shadow: none;
-   margin-left: 30px;
-   width: 90px;
-   /*line-height: 30px;*/
-   height: 30px;
+    box-shadow: none;
+    margin-left: -50px;
+    width: 90px;
+    line-height: 30px;
+    height: 30px;
 }
 
 
 footer.navbar-fixed-bottom {
- font-size: 16px;
- font-family: "PT Sans", Arial, Helvetica, sans-serif;
- line-height: 18px;
- font-weight: 400;
- padding-top: 10px;
- /*height: 80px;*/
- background: white;
- text-align: center;
+  font-size: 16px;
+  font-family: "PT Sans", Arial, Helvetica, sans-serif;
+  line-height: 18px;
+  font-weight: 400;
+  padding-top: 10px;
+  height: 80px;
+  background: white;
+  text-align: center;
 }
 
 button.btn{
- font-size: 15px;
- padding: 0;
+  font-size: 15px;
 }
 
-.noAccount {
- text-align: center;
- margin-left: -40px;
+h2 {
+  text-align: center;
+  margin-left: -40px;
+}
+
+.body-inputs {
+  margin-top: -20px;
+}
+
+.bottom-signin {
+  margin-top: 30px;
+}
+
+.calendar {
+  background-color: #C6E0FF;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 500px;
+}
+
+.calendar-view {
+  margin-top: 5px;
+    width: 530px;
+    height: 400px;
+    overflow: hidden;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.background-foodsearch{
+  background-color: lightblue;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 500px;
+  margin-top: -20px;
+}
+
+.monthly-view-button {
+
+  margin-left: 500px;
+  margin-top: 200px;
 }

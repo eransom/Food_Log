@@ -4,7 +4,7 @@ import '../App.css'
 import axios from 'axios'
 import base from '../config'
 import { Button } from 'reactstrap';
-import Moment from 'moment'
+
 
 
 class FoodSearch extends Component {
@@ -17,10 +17,8 @@ class FoodSearch extends Component {
     this.auth = base.auth()
   }
 
-
-
   componentDidMount (){
-    base.syncState(`users/${this.props.uid}/meals/Feb162017`, {
+    base.syncState(`foodItems`, {
     context: this,
     state: 'foodItems',
     asArray: true
@@ -35,7 +33,7 @@ class FoodSearch extends Component {
       console.log(user.email)
          base.post(`users/${this.props.uid}/meals`, {
           data: {
-            formattedDT: [
+            Feb142017: [
              {
               brand_name: "",
               item_id: "",
@@ -92,11 +90,9 @@ class FoodSearch extends Component {
   }
 
   showMealList() {
-    Moment.locale('e')
-    const formattedDT = Moment().format('MMMM Do, YYYY')
     if(this.state.foodItems.length !== 0) {
       return <div className="mealList">
-               <h2 className="mealHeader">{formattedDT}</h2>
+               <h2 className="mealHeader">Todays List</h2>
                <div className="mealItemContain">
                   <ul className="mealListUl">
                     {this.state.foodItems.map((result, index) => {
@@ -176,9 +172,6 @@ class FoodSearch extends Component {
   }
 
   render() {
-
-
-
     return (
       <div className="mealDiv">
         <button className="signOut" onClick={this.props.onSignOut}>Sign Out</button>
@@ -203,13 +196,14 @@ class FoodSearch extends Component {
          </div>
          <div className="budget">
            <h2 className="mealFooter">CALORIE BUDGET: 2000</h2>
-           <Link to="monthlyView" className="mealFooter"><h2>To monthly view</h2></Link>
+           <Link to="weeklyView" className="mealFooter"><h2>To weekly view</h2></Link>
            <h2 className="mealFooter">DAILY TOTAL: 1800</h2>
          </div>
-
       </div>
     )
   }
 }
 
 export default FoodSearch
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
