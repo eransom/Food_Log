@@ -1,10 +1,25 @@
 .App {
+  /*box-sizing: border-box;*/
+  background: url(../src/Images/bg3.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 600px;
+  min-height: 600px;
+  position: static;
+
+}
+
+.login {
   text-align: center;
 }
 
 .foodLogHeader {
   color: midnightblue;
 }
+
+/*==============================FOOD SEARCH*/
 
 .signOut {
   border: 1px solid blue;
@@ -16,23 +31,132 @@
   margin-top: 20px;
 }
 
+.search {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.searchList {
+  background-color: floralwhite;
+  border-radius: 15px;
+  font-weight: bold;
+  opacity: .9;
+  width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 60px;
+}
+
 .searchItems {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   list-style: none;
+  padding: 5px;
+}
+
+.searchSpan1 {
+  flex: 1;
+  margin-right: -10px;
+}
+
+.searchSpan2 {
+  flex: 2;
+}
+
+.searchSpan3 {
+  flex: 1;
+  color: red;
+}
+
+/*============================MEAL LIST*/
+.mealListPage {
+  margin-top: -48px;
+  height: 501px;
+  min-height: 501px;
+}
+
+.mealDiv {
+  height: 600px;
+  min-height: 600px;
+}
+
+.mealHeader {
+  color: blue;
+  opacity: .8;
+  font-size: 35px;
+  margin: 10px;
 }
 
 .mealList {
-  color: midnightblue;
+  background-color: floralwhite;
+  border: 2px solid darkgray;
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px -1px darkgray;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 0px;
+  position: relative;
+  width: 650px;
+  height: 450px;
+  text-align: center;
 }
+
+
+.mealListUl {
+  padding-left: 0;
+}
+
+.mealItemContain {
+  height: 300px;
+  overflow: scroll;
+}
+
+.mealListItems {
+  align-items: center;
+  background-color: lavender;
+  border: 1px solid midnightblue;
+  display: flex;
+  list-style: none;
+  padding: 0px 6px;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.items {
+  flex: 1;
+  color: blue;
+}
+
+.itemsBrand {
+  flex: 1;
+  margin-right: -20px;
+}
+
+.itemsName {
+  flex: 1;
+  margin-right: -20px;
+}
+
 
 .calories {
   color: blue;
+  opacity: .8;
+  display: block;
   font-weight: bold;
+  font-size: 24px;
+  margin-top: 30px;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  text-align: center;
 }
 
 .qty {
+  align-items: center;
   display: flex;
   margin-right: 10px;
 
@@ -40,17 +164,23 @@
 
 .qtyHeader {
   color: green;
+  font-weight: bold;
   margin-right: 5px;
-  margin-top: 2px;
+  margin-bottom: 7px;
 }
 
 .qtyButtons {
   display: flex;
-  height: 10px;
+  height: 24px;
+  /*margin-bottom: 7px;*/
   margin-right: 8px;
 }
 
-.btn {
+.qtyButtons button {
+  flex: 1;
+}
+
+.qtyNumBtn {
   box-shadow: 1px 1px 3px -3px rgba(0,0,0,0.65);
   color: green;
   padding-bottom: 15px;
@@ -59,14 +189,173 @@
 .qtyNum {
   border: 1px solid black;
   font-size: 12px;
-  opacity: .7;
-  width: 13px;
-  height: 13px;
+  opacity: .8;
+  width: 18px;
+  height: 18px;
+  margin-right: -20px;
+  text-align: center;
 }
 
 .delete-btn {
   box-shadow: 1px 1px 4px -2px rgba(0,0,0,0.65);
   color: red;
+  height: 21px;
+  margin-right: 5px;
   opacity: .7;
-  margin-left: 10px;
+}
+
+.budget {
+  display: flex;
+  justify-content: space-around;
+}
+
+.mealFooter:hover {
+  color: midnightblue;
+  text-decoration: none;
+}
+
+.navbar-inner {
+   height: 80px;
+   background: white;
+   filter: none;
+}
+
+.brand {
+   margin-top: 20px;
+   padding-bottom: 8px;
+   max-height: 40px;
+   width: auto;
+   margin-top: 20px;
+   margin-left: 20px;
+}
+
+.container {
+  position: relative;
+  height: 480px;
+}
+
+.login-wraper {
+   -webkit-border-radius: 15px;
+   -moz-border-radius: 15px;
+   -ms-border-radius: 15px;
+   -o-border-radius: 15px;
+   border-radius: 15px;
+   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   margin-left: -210px;
+   margin-top: -160px;   display: block;
+   padding: 25px;
+   width: 420px;
+   height: 320px;
+   background: white;
+   text-align: center;
+}
+
+.head-title {
+   font-size: 30px;
+   margin-top: 5px;
+   margin-bottom: 10px;
+   padding-bottom: 25px;
+   border-bottom: none;
+   font-family: 'Lato', Helvetica, sans-serif;
+   font-weight: 300;
+   color: #333333 ;
+   -webkit-font-smoothing: subpixel-antialiased;
+   text-align: center;
+}
+
+.blue {
+   color: #447fc8 ;
+}
+
+.footer {
+   margin-top: 20px;
+}
+
+.navbar-inner {
+   height: auto;
+   height: 80px;
+   background: white;
+   filter: none;
+}
+
+.body {
+   font-family: 'Lato', Helvetica, sans-serif;
+   color: #333333 ;
+   font-size: 15px;
+}
+
+.login {
+   background-color: #fff;
+   border: 1px solid #ccc;
+   width: 250px;
+   display: block;
+   margin: 0 auto;
+   transition: border linear .2s, box-shadow linear .2s;
+   display: inline-block;
+   padding: 4px 6px;
+   margin-bottom: 10px;
+   font-size: 14px;
+   line-height: 20px;
+   color: #555;
+   vertical-align: middle;
+   -webkit-border-radius: 4px;
+   -moz-border-radius: 4px;
+   border-radius: 4px;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-weight: normal;
+}
+
+.button-login {
+   box-shadow: none;
+   margin-left: 0px;
+   padding: 7px 25px;
+   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+   margin-bottom: 0;
+   font-size: 25px;
+   line-height: 10px;
+   text-align: center;
+   vertical-align: middle;
+   cursor: pointer;
+   border-radius: 4px;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   width: 90px;
+   height: 30px;
+   /*padding: 10px 40px;*/
+   background-image: none;
+   box-shadow: none;
+}
+
+.second-button-login{
+   box-shadow: none;
+   margin-left: 30px;
+   width: 90px;
+   /*line-height: 30px;*/
+   height: 30px;
+}
+
+
+footer.navbar-fixed-bottom {
+ font-size: 16px;
+ font-family: "PT Sans", Arial, Helvetica, sans-serif;
+ line-height: 18px;
+ font-weight: 400;
+ padding-top: 10px;
+ /*height: 80px;*/
+ background: white;
+ text-align: center;
+}
+
+button.btn{
+ font-size: 15px;
+ padding: 0;
+}
+
+.noAccount {
+ text-align: center;
+ margin-left: -40px;
 }

@@ -1,33 +1,68 @@
 import React, {Component} from 'react'
-import { hashHistory } from 'react-router'
+import { Link } from 'react-router'
 import '../App.css'
 import axios from 'axios'
 import base from '../config'
+import { Button } from 'reactstrap';
+
+
 
 class FoodSearch extends Component {
   constructor() {
     super()
     this.state = {
       results: [],
-      mealList: [],
+      foodItems: [],
     }
     this.auth = base.auth()
   }
 
   componentDidMount (){
-    base.syncState(`mealList`, {
+    base.syncState(`foodItems`, {
     context: this,
-    state: 'mealList',
+    state: 'foodItems',
     asArray: true
     });
   }
 
-  signOut(e){
-    e.preventDefault()
-    base.unauth()
-    hashHistory.push("/")
-    console.log('signed out: ')
+  authStateChanged (error, user) {
+    if (error) {
+      console.log(error)
+      alert('wrong password')
+    } else if (user) {
+      console.log(user.email)
+         base.post(`users/${user.uid}/meals`, {
+          data: {
+            Feb142017: [
+             {
+              brand_name: "",
+              item_id: "",
+              item_name: "banana",
+              nf_calories: "number",
+              qty: "number",
+            },
+            {
+             brand_name: "",
+             item_id: "",
+             item_name: "apple",
+             nf_calories: "number",
+             qty: "number",
+           },
+           {
+            brand_name: "",
+            item_id: "",
+            item_name: "orange",
+            nf_calories: "number",
+            qty: "number",
+          }
+           ]
+          }
+        });
+       //  base.post(`users/${user.uid}/meals/${user.date}/foodItems`, {
+      }
   }
+
+
 
   searchFoodItem(e) {
     e.preventDefault()
@@ -46,35 +81,54 @@ class FoodSearch extends Component {
     let pickedItem = result.fields
     pickedItem.qty = 1
     console.log('pickedItem is: ', pickedItem)
-    let newItemsArray = this.state.mealList.concat(pickedItem)
+    let newItemsArray = this.state.foodItems.concat(pickedItem)
       this.setState({
-        mealList: newItemsArray,
+        foodItems: newItemsArray,
         results: []
       })
-    console.log('newItemsArray In Meal List: ', newItemsArray)
+    console.log('newItemsArray In foodItems: ', newItemsArray)
   }
 
   showMealList() {
-    if(this.state.mealList.length !== 0) {
-      return 'Meal List'
+    if(this.state.foodItems.length !== 0) {
+      return <div className="mealList">
+               <h2 className="mealHeader">Todays List</h2>
+               <div className="mealItemContain">
+                  <ul className="mealListUl">
+                    {this.state.foodItems.map((result, index) => {
+                      return (
+                        <li className="mealListItems" key={index}>
+                          {this.showQuantity(result)}
+                          <span className="itemsBrand">{result.brand_name} - </span>
+                          <span className="itemsName">{result.item_name} - </span>
+                          <span className="items"> { result.nf_calories} calories</span>
+                          <span><button className="delete-btn" onClick={this.deleteItem.bind(this, result)}>X</button></span>
+                        </li>
+                        )
+                      })
+                    }
+                 </ul>
+               </div>
+               {this.getTotalCalories()}
+             </div>
     }
   }
 
   getTotalCalories() {
-    let totalCalories = this.state.mealList.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
+    let totalCalories = this.state.foodItems.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
     console.log('totalCalories is: ', totalCalories)
-    if(this.state.mealList.length !== 0) {
+    if(this.state.foodItems.length !== 0) {
       return <span className="calories">TOTAL: {totalCalories} Calories</span>
     }
   }
 
   showQuantity(result) {
-    if(this.state.mealList.length !== 0) {
+    if(this.state.foodItems.length !== 0) {
       return <div className="qty">
                <h5 className="qtyHeader">QTY</h5>
                <div className="qtyButtons">
-                 <button onClick={this.decreaseQty.bind(this, result)} className="btn">-</button>
-                 <button onClick={this.increaseQty.bind(this, result)} className="btn">+</button>
+                 <button onClick={this.decreaseQty.bind(this, result)} className="qtyNumBtn">-</button>
+                 <button onClick={this.increaseQty.bind(this, result)} className="qtyNumBtn">+</button>
                </div>
                <span className="qtyNum">{result.qty}</span>
             </div>
@@ -82,7 +136,7 @@ class FoodSearch extends Component {
     }
 
   increaseQty(result) {
-    let newQty = this.state.mealList.map((foodItem) => {
+    let newQty = this.state.foodItems.map((foodItem) => {
       if(foodItem.item_id === result.item_id) {
         result.qty++
         return result
@@ -96,7 +150,7 @@ class FoodSearch extends Component {
   }
 
   decreaseQty(result) {
-    let newQty = this.state.mealList.map((foodItem) => {
+    let newQty = this.state.foodItems.map((foodItem) => {
       if(foodItem.item_id === result.item_id && result.qty >= 2) {
         result.qty--
         return result
@@ -105,52 +159,46 @@ class FoodSearch extends Component {
       }
     })
     this.setState({
-      mealList: newQty
+      foodItems: newQty
     })
   }
 
   deleteItem(itemDeleted) {
-    var listAfterDelete = this.state.mealList.filter(result => result !== itemDeleted)
+    var listAfterDelete = this.state.foodItems.filter(result => result !== itemDeleted)
     this.setState({
-      mealList: listAfterDelete
+      foodItems: listAfterDelete
     })
     console.log('After deleteItem mealList is: ', listAfterDelete)
   }
 
   render() {
     return (
-      <div className="App">
-        <button onClick={this.signOut.bind(this)} className="signOut">Sign Out</button>
-        <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
-        <button onClick={this.searchFoodItem.bind(this)}>Search</button>
-        <ul>
-          {this.state.results.map((result, index) => {
-            return (
-              <li className="searchItems" key={index} onClick={this.addToMealList.bind(this, result)}>
-                <span className="items">{result.fields.brand_name} - </span>
-                <span className="items">{result.fields.item_name} - </span>
-                <span className="items"> { result.fields.nf_calories} calories</span>
-              </li>
-              )
-            })
-          }
-         </ul>
-         <h2 className="mealList">{this.showMealList()}</h2>
-         <ul>
-           {this.state.mealList.map((result, index) => {
-             return (
-               <li className="searchItems" key={index}>
-                 {this.showQuantity(result)}
-                 <span className="items">{result.brand_name} - </span>
-                 <span className="items">{result.item_name} - </span>
-                 <span className="items"> { result.nf_calories} calories</span>
-                 <span><button className="delete-btn" onClick={this.deleteItem.bind(this, result)}>X</button></span>
-               </li>
-               )
-             })
-           }
-        </ul>
-        {this.getTotalCalories()}
+      <div className="mealDiv">
+        <button className="signOut" onClick={this.props.onSignOut}>Sign Out</button>
+        <div className="mealListPage">
+          <div className="search">
+            <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
+            <Button color="primary" className="second-button-login" bsStyle="success" onClick={this.searchFoodItem.bind(this)}>Search</Button>
+          </div>
+          <ul className="searchList">
+            {this.state.results.map((result, index) => {
+              return (
+                <li className="searchItems" key={index} onClick={this.addToMealList.bind(this, result)}>
+                  <span className="searchSpan1">{result.fields.brand_name} - </span>
+                  <span className="searchSpan2">{result.fields.item_name} - </span>
+                  <span className="searchSpan3"> { result.fields.nf_calories} calories</span>
+                </li>
+                )
+              })
+            }
+           </ul>
+           {this.showMealList()}
+         </div>
+         <div className="budget">
+           <h2 className="mealFooter">CALORIE BUDGET: 2000</h2>
+           <Link to="weeklyView" className="mealFooter"><h2>To weekly view</h2></Link>
+           <h2 className="mealFooter">DAILY TOTAL: 1800</h2>
+         </div>
       </div>
     )
   }
