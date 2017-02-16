@@ -13,8 +13,7 @@ class MonthlyView extends Component {
   constructor(){
       super()
       this.state = {
-        userName: "",
-        value:
+        userName: ""
     }
   }
 
