@@ -1,53 +1,29 @@
 import React, { Component } from 'react'
-import { hashHistory } from 'react-router';
-import base from '../config';
+import { Link } from 'react-router';
 import '../App.css';
+import { Button } from 'reactstrap';
 
 class SignUp extends Component {
-
-  constructor(){
-    super()
-    this.state = {
-      userName: ""
-    }
-  }
-
-  signUp(e) {
-        e.preventDefault()
-        var password = this.password.value
-      if (password.length < 6) {
-       alert('Password must be 6 or more characters')
-      } else {
-       base.createUser({
-          email: this.email.value,
-          password: this.password.value
-        }, this.authStateChanged.bind(this))
-        console.log(this.email.value)
-      }
-        this.email.value = ''
-        this.password.value = ''
-      }
-
-  authStateChanged (error, user) {
-    if (error) {
-      console.log(error)
-      alert('wrong password')
-    } else if (user) {
-      console.log(user.email)
-          this.setState({
-            userName: user.email
-          })
-      hashHistory.push("/foodSearch")
-      }
-  }
 
   render() {
 
     return (
-      <div className="login">
-        <button onClick={this.signUp.bind(this)}>Sign Up</button>
+      <div>
+        <div className="container">
+          <div className="login-wraper">
+            <div className="head-title">Sign up for <span className="blue">Food Log</span></div>
+            <div className="body">
+              <div>Email</div>
+              <input className="login" ref={element => this.email = element}/>
+              <div>Password</div>
+              <input className="login" ref={element => this.password = element}/>
+              <div className="footer">
+                <Link to="logIn"><Button color="primary" className="second-button-login" bsStyle="success" onClick={this.props.onSignUp}>Sign Up</Button></Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
     )
   }
 }

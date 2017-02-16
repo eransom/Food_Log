@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import { hashHistory } from 'react-router';
 import base from './config';
+import { hashHistory } from 'react-router';
 import './App.css';
-import { Link } from 'react-router';
-import {
- Button,
- Navbar,
- Container,
-} from 'reactstrap';
 
 class App extends Component {
 
@@ -17,25 +11,26 @@ class App extends Component {
      user: {},
      uid: "",
      email: "",
-     password: ""
+     password: "",
+     foodItems: []
    }
  }
 
- // signUp(e) {
- //       e.preventDefault()
- //       var password = this.password.value
- //     if (password.length < 6) {
- //      alert('Password must be 6 or more characters')
- //     } else {
- //      base.createUser({
- //         email: this.email.value,
- //         password: this.password.value
- //       }, this.authStateChanged.bind(this))
- //       console.log(this.email.value)
- //     }
- //       this.email.value = ''
- //       this.password.value = ''
- //     }
+ signUp(e) {
+       e.preventDefault()
+       var password = this.password.value
+     if (password.length < 6) {
+      alert('Password must be 6 or more characters')
+     } else {
+      base.createUser({
+         email: this.email.value,
+         password: this.password.value
+       }, this.authStateChanged.bind(this))
+       console.log(this.email.value)
+     }
+       this.email.value = ''
+       this.password.value = ''
+     }
 
  signIn(e) {
      e.preventDefault()
@@ -44,18 +39,12 @@ class App extends Component {
       password: this.password.value
     }, this.authStateChanged.bind(this)).catch(err => console.error(err))
      console.log('Logged in as: ',)
-     base.auth().onAuthStateChanged((user) => {
-  if (user) {
-    this.setState({
-      uid: user.uid
-    })
-    console.log(user.uid);
-  }
-});
  }
 
-   signOut(){
+   signOut(e){
+     e.preventDefault()
      base.unauth()
+     hashHistory.push("/")
      console.log('signed out: ')
    }
 
@@ -66,49 +55,27 @@ class App extends Component {
      } else if (user) {
        console.log(user.email)
            this.setState({
-             users: user.email,
+             user: user.email,
              uid: user.uid
            })
-           base.post(`users`, {
+           base.post(`users/${user.uid}`, {
             data: {
-              name: "Moa",
-              username: "test",
-              uid: this.state.uid
+              email: this.state.user,
             }
           });
-       hashHistory.push("/foodSearch")
+        //  base.post(`users/${user.uid}/meals/${user.date}/foodItems`, {
        }
-   }
-
+       hashHistory.push("/foodSearch")
+     }
  render() {
 
    return (
      <div className="App">
-     <div className="navbar-inner">
-     <img className="brand" src= {('/src/img/logo3.png')}/>
-     </div>
-
-     <div className="container">
-     <div className="login-wraper">
-     <div className="head-title">Sign in to <span className="blue">Food Log</span></div>
-
-     <div className="body">
-     <div>Email</div>
-     <input className="login" ref={element => this.email = element}/>
-     <div>Password</div>
-     <input className="login" ref={element => this.password = element}/>
-     <div className="footer">
-     <Button color="success" className="button-login" bsStyle="success" onClick={this.signIn.bind(this)}>Login</Button>
-     </div>
+       <div className="navbar-inner">
+         <img className="brand" src={('/src/img/logo3.png')} alt="Food Log Logo"/>
        </div>
-       </div>
-     </div>
-     <footer className="navbar-fixed-bottom">
-     <h2>Dont have an account yet?</h2>
-     {this.props.children}
-     <Link to="signUp"><Button color="primary" className="second-button-login" bsStyle="success"  >Register</Button></Link>
-     </footer>
-
+       {this.props.children && React.cloneElement(this.props.children, {onLogin: this.signIn.bind(this), onSignUp: this.signUp.bind(this), onSignOut: this.signOut.bind(this)})}
+       <footer className="navbar-fixed-bottom"></footer>
      </div>
    );
  }

@@ -1,5 +1,14 @@
 .App {
-  box-sizing: border-box;
+  /*box-sizing: border-box;*/
+  background: url(../src/Images/bg3.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 600px;
+  min-height: 600px;
+  position: static;
+
 }
 
 .login {
@@ -64,10 +73,14 @@
 
 /*============================MEAL LIST*/
 .mealListPage {
-  /*background-image: url(Images/bg3.png);*/
-  /*background-size: contain;*/
-  /*height: 525px;
-  min-height: 525px;*/
+  margin-top: -48px;
+  height: 501px;
+  min-height: 501px;
+}
+
+.mealDiv {
+  height: 600px;
+  min-height: 600px;
 }
 
 .mealHeader {
@@ -196,7 +209,12 @@
   justify-content: space-around;
 }
 
-navbar-inner {
+.mealFooter:hover {
+  color: midnightblue;
+  text-decoration: none;
+}
+
+.navbar-inner {
    height: 80px;
    background: white;
    filter: none;
@@ -211,6 +229,11 @@ navbar-inner {
    margin-left: 20px;
 }
 
+.container {
+  position: relative;
+  height: 480px;
+}
+
 .login-wraper {
    -webkit-border-radius: 15px;
    -moz-border-radius: 15px;
@@ -220,11 +243,11 @@ navbar-inner {
    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-   position: relative;
-   top: 50px;
+   position: absolute;
    left: 50%;
-   display: block;
-   margin-left: -235px;
+   top: 50%;
+   margin-left: -210px;
+   margin-top: -160px;   display: block;
    padding: 25px;
    width: 420px;
    height: 320px;
@@ -255,7 +278,7 @@ navbar-inner {
 
 .navbar-inner {
    height: auto;
-   height: 50px;
+   height: 80px;
    background: white;
    filter: none;
 }
@@ -302,16 +325,16 @@ navbar-inner {
    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
    width: 90px;
    height: 30px;
-   padding: 10px 40px;
+   /*padding: 10px 40px;*/
    background-image: none;
    box-shadow: none;
 }
 
 .second-button-login{
    box-shadow: none;
-   margin-left: -50px;
+   margin-left: 30px;
    width: 90px;
-   line-height: 30px;
+   /*line-height: 30px;*/
    height: 30px;
 }
 
@@ -322,13 +345,14 @@ footer.navbar-fixed-bottom {
  line-height: 18px;
  font-weight: 400;
  padding-top: 10px;
- height: 80px;
+ /*height: 80px;*/
  background: white;
  text-align: center;
 }
 
 button.btn{
  font-size: 15px;
+ padding: 0;
 }
 
 .noAccount {

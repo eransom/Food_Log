@@ -2,34 +2,47 @@
   "users": {
     "uid" : {
       "email": "",
-      "password": "",
       "calorieGoals": "2000",
       "meals": {
-        "Feb1417": [
-          {
-            "brand_name": "",
-            "item_id": "",
-            "item_name": "",
-            "key": "",
-            "nf_calories": "number",
-            "nf_serving_size_qty": "number",
-            "nf_serving_size_unit": "",
-            "qty": "number"
-          }
-        ],
-        "Feb1417": [
-          {
-            "brand_name": "",
-            "item_id": "",
-            "item_name": "",
-            "key": "",
-            "nf_calories": "number",
-            "nf_serving_size_qty": "number",
-            "nf_serving_size_unit": "",
-            "qty": "number"
-          }
-        ]
-      }
+        "Feb1417": [,
+          {"foodItems": [
+            {
+              "brand_name": "",
+              "item_id": "",
+              "item_name": "banana",
+              "nf_calories": "number",
+              "qty": "number"
+            },
+            {
+              "brand_name": "",
+              "item_id": "",
+              "item_name": "apple",
+              "nf_calories": "number",
+              "qty": "number"
+            }
+          ],
+          {"totalCalories": "1800"}
+      ],
+        "Feb1517": [,
+          {"foodItems": [,
+            {
+              "brand_name": "",
+              "item_id": "",
+              "item_name": "banana",
+              "nf_calories": "number",
+              "qty": "number"
+            },
+            {
+              "brand_name": "",
+              "item_id": "",
+              "item_name": "apple",
+              "nf_calories": "number",
+              "qty": "number"
+            }
+          ]
+          },
+          {"totalCalories": "1800"}
+      ],
     }
   }
 }

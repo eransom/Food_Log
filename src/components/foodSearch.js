@@ -1,8 +1,11 @@
 import React, {Component} from 'react'
-import { hashHistory } from 'react-router'
+import { Link } from 'react-router'
 import '../App.css'
 import axios from 'axios'
 import base from '../config'
+import { Button } from 'reactstrap';
+
+
 
 class FoodSearch extends Component {
   constructor() {
@@ -22,12 +25,44 @@ class FoodSearch extends Component {
     });
   }
 
-  signOut(e){
-    e.preventDefault()
-    base.unauth()
-    hashHistory.push("/")
-    console.log('signed out: ')
+  authStateChanged (error, user) {
+    if (error) {
+      console.log(error)
+      alert('wrong password')
+    } else if (user) {
+      console.log(user.email)
+         base.post(`users/${user.uid}/meals`, {
+          data: {
+            Feb142017: [
+             {
+              brand_name: "",
+              item_id: "",
+              item_name: "banana",
+              nf_calories: "number",
+              qty: "number",
+            },
+            {
+             brand_name: "",
+             item_id: "",
+             item_name: "apple",
+             nf_calories: "number",
+             qty: "number",
+           },
+           {
+            brand_name: "",
+            item_id: "",
+            item_name: "orange",
+            nf_calories: "number",
+            qty: "number",
+          }
+           ]
+          }
+        });
+       //  base.post(`users/${user.uid}/meals/${user.date}/foodItems`, {
+      }
   }
+
+
 
   searchFoodItem(e) {
     e.preventDefault()
@@ -57,7 +92,7 @@ class FoodSearch extends Component {
   showMealList() {
     if(this.state.foodItems.length !== 0) {
       return <div className="mealList">
-               <h2 className="mealHeader">Breakfast</h2>
+               <h2 className="mealHeader">Todays List</h2>
                <div className="mealItemContain">
                   <ul className="mealListUl">
                     {this.state.foodItems.map((result, index) => {
@@ -138,12 +173,12 @@ class FoodSearch extends Component {
 
   render() {
     return (
-      <div>
-        <button className="signOut" onClick={this.signOut.bind(this)}>Sign Out</button>
+      <div className="mealDiv">
+        <button className="signOut" onClick={this.props.onSignOut}>Sign Out</button>
         <div className="mealListPage">
           <div className="search">
             <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
-            <button onClick={this.searchFoodItem.bind(this)}>Search</button>
+            <Button color="primary" className="second-button-login" bsStyle="success" onClick={this.searchFoodItem.bind(this)}>Search</Button>
           </div>
           <ul className="searchList">
             {this.state.results.map((result, index) => {
@@ -160,8 +195,9 @@ class FoodSearch extends Component {
            {this.showMealList()}
          </div>
          <div className="budget">
-           <h2>CALORIE BUDGET: 2000</h2>
-           <h2>DAILY TOTAL: 1800</h2>
+           <h2 className="mealFooter">CALORIE BUDGET: 2000</h2>
+           <Link to="weeklyView" className="mealFooter"><h2>To weekly view</h2></Link>
+           <h2 className="mealFooter">DAILY TOTAL: 1800</h2>
          </div>
       </div>
     )
