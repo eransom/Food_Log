@@ -50,23 +50,23 @@ signUp(e) {
 
       return (
         <div className="background-signup">
-        <div className="login-wraper">
-        <div className="head-title">Sign Up to <span className="blue">Food Log</span></div>
+          <div className="login-wraper">
+          <div className="head-title">Sign Up to <span className="blue">Food Log</span></div>
 
-        <div className="body-inputs">
-        <div>Email</div>
-        <input className="login" ref={element => this.email = element}/>
-        <div>Password</div>
-        <input className="login" ref={element => this.password = element}/>
-        <div>
-        <Link to="/"><Button color="primary" bsStyle="success" onClick={this.signUp.bind(this)}>Register</Button></Link>
-        </div>
-        </div>
-        <div className="bottom-signin">
-        <h4 className="already-account">Already have an account?</h4>
-        <Link to="/"><Button color="success" bsStyle="success" >Log In</Button></Link>
-        </div>
-        </div>
+          <div className="body-inputs">
+          <div>Email</div>
+          <input className="login" ref={element => this.email = element}/>
+          <div>Password</div>
+          <input className="login" ref={element => this.password = element}/>
+          <div>
+          <Link to="/"><Button color="primary" bsStyle="success" onClick={this.signUp.bind(this)}>Register</Button></Link>
+          </div>
+          </div>
+          <div className="bottom-signin">
+          <h4 className="already-account">Already have an account?</h4>
+          <Link to="/"><Button color="success" bsStyle="success" >Log In</Button></Link>
+          </div>
+          </div>
         </div>
 
       )
