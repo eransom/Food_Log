@@ -1,20 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+import { Router, Route, hashHistory, Link, IndexRoute} from 'react-router'
 import App from './App';
-import LogIn from './components/logIn.js'
 import FoodSearch from './components/foodSearch.js'
 import SignUp from './components/signUp.js'
-import WeeklyView from './components/weeklyView.js'
+import SignIn from './components/signIn.js'
+import MonthlyView from './components/monthlyView.js'
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App} >
-      <IndexRoute component={LogIn}/>
+      <IndexRoute component={SignIn}></IndexRoute>
       <Route path="signUp" component={SignUp}/>
-      <Route path="foodSearch" component={FoodSearch} />
-      <Route path="weeklyView" component={WeeklyView} />
+      <Route path="foodSearch" component={FoodSearch}/>
+      <Route path="monthlyView" component={MonthlyView}/>
     </Route>
   </Router>,
   document.getElementById('root')
