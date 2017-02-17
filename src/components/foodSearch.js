@@ -28,42 +28,42 @@ class FoodSearch extends Component {
 console.log("user id is ", `${this.props.uid}`)
   }
 
-  authStateChanged (error, user) {
-    if (error) {
-      console.log(error)
-      alert('wrong password')
-    } else if (user) {
-      console.log(user.email)
-         base.post(`users/${this.props.uid}/meals`, {
-          data: {
-            formattedDT: [
-             {
-              brand_name: "",
-              item_id: "",
-              item_name: "banana",
-              nf_calories: "number",
-              qty: "number",
-            },
-            {
-             brand_name: "",
-             item_id: "",
-             item_name: "apple",
-             nf_calories: "number",
-             qty: "number",
-           },
-           {
-            brand_name: "",
-            item_id: "",
-            item_name: "orange",
-            nf_calories: "number",
-            qty: "number",
-          }
-           ]
-          }
-        });
-       //  base.post(`users/${user.uid}/meals/${user.date}/foodItems`, {
-      }
-  }
+  // authStateChanged (error, user) {
+  //   if (error) {
+  //     console.log(error)
+  //     alert('wrong password')
+  //   } else if (user) {
+  //     console.log(user.email)
+  //        base.post(`users/${this.props.uid}/meals`, {
+  //         data: {
+  //           formattedDT: [
+  //            {
+  //             brand_name: "",
+  //             item_id: "",
+  //             item_name: "banana",
+  //             nf_calories: "number",
+  //             qty: "number",
+  //           },
+  //           {
+  //            brand_name: "",
+  //            item_id: "",
+  //            item_name: "apple",
+  //            nf_calories: "number",
+  //            qty: "number",
+  //          },
+  //          {
+  //           brand_name: "",
+  //           item_id: "",
+  //           item_name: "orange",
+  //           nf_calories: "number",
+  //           qty: "number",
+  //         }
+  //          ]
+  //         }
+  //       });
+  //      //  base.post(`users/${user.uid}/meals/${user.date}/foodItems`, {
+  //     }
+  // }
 
 
 
