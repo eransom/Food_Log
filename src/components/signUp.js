@@ -26,7 +26,7 @@ signUp(e) {
      base.createUser({
         email: this.email.value,
         password: this.password.value
-      }, this.authStateChanged.bind(this))
+      }, this.props.auth)
       console.log(this.email.value)
     }
       this.email.value = ''
@@ -34,18 +34,18 @@ signUp(e) {
     }
 
 
-    authStateChanged (error, user) {
-         if (error) {
-           console.log(error)
-           alert('wrong password')
-         } else if (user) {
-           console.log(user.email)
-               this.setState({
-                 username: user.email
-               })
-          hashHistory.push("/")
-           }
-         }
+    // authStateChanged (error, user) {
+    //      if (error) {
+    //        console.log(error)
+    //        alert('wrong password')
+    //      } else if (user) {
+    //        console.log(user.email)
+    //            this.setState({
+    //              username: user.email
+    //            })
+    //       hashHistory.push("/")
+    //        }
+    //      }
     render() {
 
       return (

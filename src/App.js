@@ -22,23 +22,6 @@ class App extends Component {
    }
  }
 
- signUp(e) {
-       e.preventDefault()
-       var password = this.password.value
-     if (password.length < 6) {
-      alert('Password must be 6 or more characters')
-     } else {
-      base.createUser({
-         email: this.email.value,
-         password: this.password.value
-       }, this.authStateChanged.bind(this))
-       console.log(this.email.value)
-     }
-       this.email.value = ''
-       this.password.value = ''
-     }
-
-
 
    signOut(){
      base.unauth()
@@ -66,6 +49,8 @@ class App extends Component {
            //  base.post(`users/${user.uid}/meals/${user.date}/foodItems`, {
           }
         }
+        
+
  render() {
 
    return (
@@ -75,12 +60,11 @@ class App extends Component {
      <img src={logo} className="App-logo" alt="logo" />
      <span className="slogan">Keep track of what you eat</span>
      </div>
-    {this.props.children && React.cloneElement(this.props.children, { user: this.state.user, uid: this.state.uid, onSignOut: this.signOut.bind(this)})}
+    {this.props.children && React.cloneElement(this.props.children, { auth: this.authStateChanged.bind(this), user: this.state.user, uid: this.state.uid, onSignOut: this.signOut.bind(this)})}
      <footer className="navbar-fixed-bottom">
      <span className="social-media">
      <img src={socialmedia} className="social-media" alt="social-media" />
      </span>
-
      </footer>
      </div>
      </div>

@@ -22,29 +22,29 @@ signIn(e) {
     base.authWithPassword({
      email: this.email.value,
      password: this.password.value
-   }, this.authStateChanged.bind(this)).catch(err => console.error(err))
+   }, this.props.auth).catch(err => console.error(err))
     console.log('Logged in as: ',)
 }
 
-    authStateChanged (error, user) {
-     if (error) {
-       console.log(error)
-       alert('wrong password')
-     } else if (user) {
-       console.log(user.email)
-           this.setState({
-             user: user.email,
-             uid: user.uid
-           })
-           base.post(`users/${user.uid}`, {
-            data: {
-              email: this.state.user,
-            }
-          });
-        //  base.post(`users/${user.uid}/meals/${user.date}/foodItems`, {
-       }
-       hashHistory.push("/foodSearch")
-     }
+    // authStateChanged (error, user) {
+    //  if (error) {
+    //    console.log(error)
+    //    alert('wrong password')
+    //  } else if (user) {
+    //    console.log(user.email)
+    //        this.setState({
+    //          user: user.email,
+    //          uid: user.uid
+    //        })
+    //        base.post(`users/${user.uid}`, {
+    //         data: {
+    //           email: this.state.user,
+    //         }
+    //       });
+    //     //  base.post(`users/${user.uid}/meals/${user.date}/foodItems`, {
+    //    }
+    //    hashHistory.push("/foodSearch")
+    //  }
 
     render() {
 
@@ -66,7 +66,7 @@ signIn(e) {
         <Link to="signUp"><Button color="primary" bsStyle="success">Register</Button></Link>
         </div>
         </div>
-        
+
         </div>
 
       )

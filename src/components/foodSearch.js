@@ -19,14 +19,14 @@ class FoodSearch extends Component {
 
 
 
-  componentDidMount (){
-    base.syncState(`users/${this.props.uid}/meals/Feb162017`, {
-    context: this,
-    state: 'foodItems',
-    asArray: true
-    });
-console.log("user id is ", `${this.props.uid}`)
-  }
+//   componentDidMount (){
+//     base.syncState(`users/${this.props.uid}/meals/Feb162017`, {
+//     context: this,
+//     state: 'foodItems',
+//     asArray: true
+//     });
+// console.log("user id is ", `${this.props.uid}`)
+//   }
 
   // authStateChanged (error, user) {
   //   if (error) {
@@ -89,7 +89,7 @@ console.log("user id is ", `${this.props.uid}`)
         foodItems: newItemsArray,
         results: []
       })
-      console.log("user is ", `${this.props.uid}`)
+      console.log("uid is ", `${this.props.uid}`)
     base.post(`users/${this.props.uid}/meals`, {
      data: {
        newItemsArray
