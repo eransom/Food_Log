@@ -25,6 +25,7 @@ class FoodSearch extends Component {
     state: 'foodItems',
     asArray: true
     });
+console.log("user id is ", `${this.props.uid}`)
   }
 
   authStateChanged (error, user) {
@@ -88,6 +89,12 @@ class FoodSearch extends Component {
         foodItems: newItemsArray,
         results: []
       })
+      console.log("user is ", `${this.props.uid}`)
+    base.post(`users/${this.props.uid}/meals`, {
+     data: {
+       newItemsArray
+     }
+   })
     console.log('newItemsArray In foodItems: ', newItemsArray)
   }
 

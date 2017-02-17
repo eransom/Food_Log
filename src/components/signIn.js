@@ -66,6 +66,7 @@ signIn(e) {
         <Link to="signUp"><Button color="primary" bsStyle="success">Register</Button></Link>
         </div>
         </div>
+        
         </div>
 
       )
