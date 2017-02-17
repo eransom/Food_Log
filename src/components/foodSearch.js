@@ -184,7 +184,7 @@ class FoodSearch extends Component {
         <button className="signOut" onClick={this.props.onSignOut}>Sign Out</button>
         <div className="mealListPage">
           <div className="search">
-            <input ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
+            <input className="searchInput" ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
             <Button color="primary" className="second-button-login" bsStyle="success" onClick={this.searchFoodItem.bind(this)}>Search</Button>
           </div>
           <ul className="searchList">
