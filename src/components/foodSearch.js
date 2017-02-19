@@ -20,51 +20,13 @@ class FoodSearch extends Component {
 
 
 //   componentDidMount (){
-//     base.syncState(`users/${this.props.uid}/meals/Feb162017`, {
+//     base.syncstate(`foodItems`, {
 //     context: this,
 //     state: 'foodItems',
 //     asArray: true
 //     });
 // console.log("user id is ", `${this.props.uid}`)
 //   }
-
-  // authStateChanged (error, user) {
-  //   if (error) {
-  //     console.log(error)
-  //     alert('wrong password')
-  //   } else if (user) {
-  //     console.log(user.email)
-  //        base.post(`users/${this.props.uid}/meals`, {
-  //         data: {
-  //           formattedDT: [
-  //            {
-  //             brand_name: "",
-  //             item_id: "",
-  //             item_name: "banana",
-  //             nf_calories: "number",
-  //             qty: "number",
-  //           },
-  //           {
-  //            brand_name: "",
-  //            item_id: "",
-  //            item_name: "apple",
-  //            nf_calories: "number",
-  //            qty: "number",
-  //          },
-  //          {
-  //           brand_name: "",
-  //           item_id: "",
-  //           item_name: "orange",
-  //           nf_calories: "number",
-  //           qty: "number",
-  //         }
-  //          ]
-  //         }
-  //       });
-  //      //  base.post(`users/${user.uid}/meals/${user.date}/foodItems`, {
-  //     }
-  // }
-
 
 
   searchFoodItem(e) {
@@ -89,8 +51,10 @@ class FoodSearch extends Component {
         foodItems: newItemsArray,
         results: []
       })
+      Moment.locale('e')
+      const formattedDT = Moment().format('MMMM Do, YYYY')
       console.log("uid is ", `${this.props.uid}`)
-    base.post(`users/${this.props.uid}/meals`, {
+     base.post(`users/${this.props.uid}/meals/${formattedDT}`, {
      data: {
        newItemsArray
      }
@@ -124,6 +88,14 @@ class FoodSearch extends Component {
              </div>
     }
   }
+
+  // createNewMealList() {
+  //
+  //   this.setState({
+  //     foodItems: []
+  //   })
+  //   console.log('newList foodItems', this.state.foodItems)
+  // }
 
   getTotalCalories() {
     let totalCalories = this.state.foodItems.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
@@ -213,7 +185,6 @@ class FoodSearch extends Component {
            <Link to="monthlyView" className="mealFooter"><h2>To monthly view</h2></Link>
            <h2 className="mealFooter">DAILY TOTAL: 1800</h2>
          </div>
-
       </div>
     )
   }
