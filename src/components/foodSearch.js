@@ -13,20 +13,23 @@ class FoodSearch extends Component {
     this.state = {
       results: [],
       foodItems: [],
+      budget: 0
     }
     this.auth = base.auth()
   }
 
 
+  componentDidMount (){
+    const formattedDT = Moment().format('MMMM Do, YYYY')
+    console.log("uid is ", `${this.props.uid}`)
 
-//   componentDidMount (){
-//     base.syncstate(`foodItems`, {
-//     context: this,
-//     state: 'foodItems',
-//     asArray: true
-//     });
-// console.log("user id is ", `${this.props.uid}`)
-  // }
+    base.syncState(`users/${this.props.uid}/meals/${formattedDT}`, {
+    context: this,
+    state: 'foodItems',
+    asArray: true
+    });
+console.log("user id is ", `${this.props.uid}`)
+  }
 
 
   searchFoodItem(e) {
@@ -51,14 +54,6 @@ class FoodSearch extends Component {
         foodItems: newItemsArray,
         results: []
       })
-      Moment.locale('e')
-      const formattedDT = Moment().format('MMMM Do, YYYY')
-      console.log("uid is ", `${this.props.uid}`)
-     base.push(`users/${this.props.uid}/meals/${formattedDT}/`, {
-     data: {
-        item: newItemsArray
-     }
-   })
    console.log('this.state.foodItems is: ', newItemsArray)
   }
 
@@ -89,19 +84,17 @@ class FoodSearch extends Component {
     }
   }
 
-  // createNewMealList() {
-  //
-  //   this.setState({
-  //     foodItems: []
-  //   })
-  //   console.log('newList foodItems', this.state.foodItems)
-  // }
 
-  getTotalCalories() {
+  getTotalCalories(calBudget) {
     let totalCalories = this.state.foodItems.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
     console.log('totalCalories is: ', totalCalories)
     if(this.state.foodItems.length !== 0) {
-      return <span className="calories">TOTAL: {totalCalories} Calories</span>
+
+      return <div className="calorieCount">
+               <button className="setLimitBtn">Set Cal Limit</button>
+               <span className="daily-calories">Budget Left: {calBudget - totalCalories} calories</span>
+               <span className="daily-calories">DAILY TOTAL: {totalCalories} Calories</span>
+             </div>
     }
   }
 
@@ -156,8 +149,6 @@ class FoodSearch extends Component {
 
   render() {
 
-
-
     return (
       <div className="mealDiv">
         <button className="signOut" onClick={this.props.onSignOut}>Sign Out</button>
@@ -181,9 +172,7 @@ class FoodSearch extends Component {
            {this.showMealList()}
          </div>
          <div className="budget">
-           <h2 className="mealFooter">CALORIE BUDGET: 2000</h2>
            <Link to="monthlyView" className="mealFooter"><h2>To monthly view</h2></Link>
-           <h2 className="mealFooter">DAILY TOTAL: 1800</h2>
          </div>
       </div>
     )
