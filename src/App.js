@@ -39,17 +39,15 @@ class App extends Component {
                 user: user.email,
                 uid: user.uid,
               })
-              base.post(`users/${user.uid}`, {
-               data: {
-                 email: this.state.user,
-               }
-             }),
+            //   base.post(`users/${user.uid}`, {
+            //    data: {
+            //      email: this.state.user,
+            //    }
+            //  }),
              hashHistory.push("/foodSearch")
-;
-           //  base.post(`users/${user.uid}/meals/${user.date}/foodItems`, {
           }
         }
-        
+
 
  render() {
 

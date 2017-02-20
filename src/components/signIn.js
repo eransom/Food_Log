@@ -26,25 +26,6 @@ signIn(e) {
     console.log('Logged in as: ',)
 }
 
-    // authStateChanged (error, user) {
-    //  if (error) {
-    //    console.log(error)
-    //    alert('wrong password')
-    //  } else if (user) {
-    //    console.log(user.email)
-    //        this.setState({
-    //          user: user.email,
-    //          uid: user.uid
-    //        })
-    //        base.post(`users/${user.uid}`, {
-    //         data: {
-    //           email: this.state.user,
-    //         }
-    //       });
-    //     //  base.post(`users/${user.uid}/meals/${user.date}/foodItems`, {
-    //    }
-    //    hashHistory.push("/foodSearch")
-    //  }
 
     render() {
 

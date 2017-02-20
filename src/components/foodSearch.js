@@ -26,7 +26,7 @@ class FoodSearch extends Component {
 //     asArray: true
 //     });
 // console.log("user id is ", `${this.props.uid}`)
-//   }
+  // }
 
 
   searchFoodItem(e) {
@@ -54,12 +54,12 @@ class FoodSearch extends Component {
       Moment.locale('e')
       const formattedDT = Moment().format('MMMM Do, YYYY')
       console.log("uid is ", `${this.props.uid}`)
-     base.post(`users/${this.props.uid}/meals/${formattedDT}`, {
+     base.push(`users/${this.props.uid}/meals/${formattedDT}/`, {
      data: {
-       newItemsArray
+        item: newItemsArray
      }
    })
-    console.log('newItemsArray In foodItems: ', newItemsArray)
+   console.log('this.state.foodItems is: ', newItemsArray)
   }
 
   showMealList() {
