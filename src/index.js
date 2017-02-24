@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory, Link, IndexRoute} from 'react-router'
+import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 import App from './App';
 import FoodSearch from './components/foodSearch.js'
 import SignUp from './components/signUp.js'

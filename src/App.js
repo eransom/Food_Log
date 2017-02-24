@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import { hashHistory, Link } from 'react-router';
+import { hashHistory } from 'react-router';
 import base from './config';
 import logo from './img/logo.png';
 import socialmedia from './img/social-icons.png';
 import './App.css';
-import {
- Button,
- Navbar,
- Container,
-} from 'reactstrap';
 
 class App extends Component {
 

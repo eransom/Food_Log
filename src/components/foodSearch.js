@@ -13,7 +13,8 @@ class FoodSearch extends Component {
     this.state = {
       results: [],
       foodItems: [],
-      budget: 0
+      budget: 0,
+      remaining: 0
     }
     this.auth = base.auth()
   }
@@ -21,14 +22,14 @@ class FoodSearch extends Component {
 
   componentDidMount (){
     const formattedDT = Moment().format('MMMM Do, YYYY')
-    console.log("uid is ", `${this.props.uid}`)
+    console.log("uid is: ", `${this.props.uid}`)
 
     base.syncState(`users/${this.props.uid}/meals/${formattedDT}`, {
     context: this,
     state: 'foodItems',
     asArray: true
     });
-console.log("user id is ", `${this.props.uid}`)
+    console.log("user id is ", `${this.props.uid}`)
   }
 
 
@@ -40,8 +41,8 @@ console.log("user id is ", `${this.props.uid}`)
       this.setState({
         results: response.data.hits
       })
-      console.log('Results are: ', response.data.hits)
-      this.searchInput.value = ""
+    console.log('Results are: ', response.data.hits)
+    this.searchInput.value = ""
     })
    }
 
@@ -54,10 +55,20 @@ console.log("user id is ", `${this.props.uid}`)
         foodItems: newItemsArray,
         results: []
       })
-   console.log('this.state.foodItems is: ', newItemsArray)
+    console.log('this.state.foodItems is: ', newItemsArray)
   }
 
+
   showMealList() {
+    var totalCalories = this.state.foodItems.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
+    var remainingCalories = this.state.remaining - totalCalories
+    console.log('remainingCalories is: ', remainingCalories)
+    base.update(`users/${this.props.uid}`, {
+      data: {
+        calorieBudget: remainingCalories
+      }
+    })
+
     Moment.locale('e')
     const formattedDT = Moment().format('MMMM Do, YYYY')
     if(this.state.foodItems.length !== 0) {
@@ -79,24 +90,41 @@ console.log("user id is ", `${this.props.uid}`)
                     }
                  </ul>
                </div>
-               {this.getTotalCalories()}
+               <div className="calorieCount">
+                  <input ref={input => this.calGoal = input} />
+                  <button className="setLimitBtn" onClick={this.setCalorieGoal.bind(this)}>Set Cal Limit</button>
+                  <span className="daily-calories">Daily left: {remainingCalories} calories</span>
+                  <span className="daily-calories">Daily Total: {totalCalories} calories</span>
+               </div>
              </div>
     }
   }
 
-
-  getTotalCalories(calBudget) {
-    let totalCalories = this.state.foodItems.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
-    console.log('totalCalories is: ', totalCalories)
-    if(this.state.foodItems.length !== 0) {
-
-      return <div className="calorieCount">
-               <button className="setLimitBtn">Set Cal Limit</button>
-               <span className="daily-calories">Budget Left: {calBudget - totalCalories} calories</span>
-               <span className="daily-calories">DAILY TOTAL: {totalCalories} Calories</span>
-             </div>
-    }
+  setCalorieGoal() {
+    let budget = this.calGoal.value
+    this.setState({
+      remaining: budget
+    })
+    console.log('Cal Goal is: ', budget)
+    this.showMealList(budget)
   }
+
+  // getTotalCalories(budget) {
+  //   var totalCalories = this.state.foodItems.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
+  //   var remainingCalories = budget - totalCalories
+  //   console.log('remainingCalories is: ', remainingCalories)
+  //   console.log('totalCalories is: ', totalCalories)
+  //   console.log('budget is: ', budget)
+  //   if(this.state.foodItems.length !== 0) {
+  //
+  //     return <div className="calorieCount">
+  //              <input ref={input => this.calGoal = input} />
+  //              <button className="setLimitBtn" onClick={this.setCalorieGoal.bind(this)}>Set Cal Limit</button>
+  //              <span className="daily-calories">Budget Left: {remainingCalories} calories</span>
+  //              <span className="daily-calories">DAILY TOTAL: {totalCalories} Calories</span>
+  //            </div>
+  //   }
+  // }
 
   showQuantity(result) {
     if(this.state.foodItems.length !== 0) {
@@ -148,14 +176,13 @@ console.log("user id is ", `${this.props.uid}`)
   }
 
   render() {
-
     return (
       <div className="mealDiv">
         <button className="signOut" onClick={this.props.onSignOut}>Sign Out</button>
         <div className="mealListPage">
           <div className="search">
             <input className="searchInput" ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
-            <Button color="primary" className="second-button-login" bsStyle="success" onClick={this.searchFoodItem.bind(this)}>Search</Button>
+            <Button color="primary" className="second-button-login"  onClick={this.searchFoodItem.bind(this)}>Search</Button>
           </div>
           <ul className="searchList">
             {this.state.results.map((result, index) => {

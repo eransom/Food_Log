@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { hashHistory, Link } from 'react-router';
-import base from '../config';
-import '../App.css';
-import {
-  Button,
-  Navbar,
-  Container,
-} from 'reactstrap';
+// import { hashHistory, Link } from 'react-router';
+// import base from '../config';
+// import '../App.css';
+// import {
+//   Button,
+//   Navbar,
+//   Container,
+// } from 'reactstrap';
 
 class MonthlyView extends Component {
 

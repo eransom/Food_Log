@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { hashHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 import base from '../config';
 import '../App.css';
-import {
-  Button,
-  Navbar,
-  Container,
-} from 'reactstrap';
+import {Button} from 'reactstrap';
 
 class SignIn extends Component {
 
@@ -24,6 +20,7 @@ signIn(e) {
      password: this.password.value
    }, this.props.auth).catch(err => console.error(err))
     console.log('Logged in as: ',)
+    // base.fetch(`users/${this.props.uid}`)
 }
 
 
@@ -39,12 +36,12 @@ signIn(e) {
         <div>Password</div>
         <input className="login" ref={element => this.password = element}/>
         <div>
-        <Link to="foodSearch"><Button color="success" bsStyle="success" onClick={this.signIn.bind(this)}>Log In</Button></Link>
+        <Link to="foodSearch"><Button color="success" onClick={this.signIn.bind(this)}>Log In</Button></Link>
         </div>
         </div>
         <div className="bottom-signin">
         <h4 className="noAccount">Dont have an account yet?</h4>
-        <Link to="signUp"><Button color="primary" bsStyle="success">Register</Button></Link>
+        <Link to="signUp"><Button color="primary">Register</Button></Link>
         </div>
         </div>
 
