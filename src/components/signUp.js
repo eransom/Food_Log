@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { hashHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 import base from '../config';
 import '../App.css';
-import {
-  Button,
-  Navbar,
-  Container,
-} from 'reactstrap';
+import {Button} from 'reactstrap';
 
 class SignUp extends Component {
 
@@ -33,19 +29,6 @@ signUp(e) {
       this.password.value = ''
     }
 
-
-    // authStateChanged (error, user) {
-    //      if (error) {
-    //        console.log(error)
-    //        alert('wrong password')
-    //      } else if (user) {
-    //        console.log(user.email)
-    //            this.setState({
-    //              username: user.email
-    //            })
-    //       hashHistory.push("/")
-    //        }
-    //      }
     render() {
 
       return (
@@ -59,7 +42,7 @@ signUp(e) {
           <div>Password</div>
           <input className="login" ref={element => this.password = element}/>
           <div>
-          <Link to="/"><Button color="primary" bsStyle="success" onClick={this.signUp.bind(this)}>Register</Button></Link>
+          <Link to="/"><Button color="primary" onClick={this.signUp.bind(this)}>Register</Button></Link>
           </div>
           </div>
           <div className="bottom-signin">
