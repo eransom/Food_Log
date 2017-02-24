@@ -1,13 +1,7 @@
-import React, { Component } from 'react-router';
-import base from '../config'
+import React, { Component } from 'react';
+// import base from '../config'
 
 class CalorieBudget extends Component {
-  constructor(){
-    super()
-    this.state = {
-      budget: 0
-    }
-  }
 
 
 
@@ -20,3 +14,5 @@ class CalorieBudget extends Component {
     )
   }
 }
+
+export default CalorieBudget

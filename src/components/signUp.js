@@ -23,7 +23,6 @@ signUp(e) {
         email: this.email.value,
         password: this.password.value
       }, this.props.auth)
-      console.log(this.email.value)
     }
       this.email.value = ''
       this.password.value = ''
@@ -42,12 +41,12 @@ signUp(e) {
           <div>Password</div>
           <input className="login" ref={element => this.password = element}/>
           <div>
-          <Link to="/"><Button color="primary" onClick={this.signUp.bind(this)}>Register</Button></Link>
+          <Button color="primary" onClick={this.signUp.bind(this)}>Register</Button>
           </div>
           </div>
           <div className="bottom-signin">
           <h4 className="already-account">Already have an account?</h4>
-          <Link to="/"><Button color="success" bsStyle="success" >Log In</Button></Link>
+          <Link to="/"><Button color="success">Log In</Button></Link>
           </div>
           </div>
         </div>

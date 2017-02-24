@@ -30,6 +30,7 @@ class FoodSearch extends Component {
     asArray: true
     });
     console.log("user id is ", `${this.props.uid}`)
+
   }
 
 
@@ -61,13 +62,16 @@ class FoodSearch extends Component {
 
   showMealList() {
     var totalCalories = this.state.foodItems.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
-    var remainingCalories = this.state.remaining - totalCalories
+    var remainingCalories = this.state.budget - totalCalories
     console.log('remainingCalories is: ', remainingCalories)
+
     base.update(`users/${this.props.uid}`, {
       data: {
-        calorieBudget: remainingCalories
+        calorieBudget: this.state.budget
       }
     })
+    console.log('this.state.budget = ', this.state.budget)
+
 
     Moment.locale('e')
     const formattedDT = Moment().format('MMMM Do, YYYY')
@@ -103,9 +107,9 @@ class FoodSearch extends Component {
   setCalorieGoal() {
     let budget = this.calGoal.value
     this.setState({
-      remaining: budget
+      budget: budget
     })
-    console.log('Cal Goal is: ', budget)
+    console.log('Cal Goal is: ', this.state.budget)
     this.showMealList(budget)
   }
 

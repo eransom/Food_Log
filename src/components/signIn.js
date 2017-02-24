@@ -20,7 +20,16 @@ signIn(e) {
      password: this.password.value
    }, this.props.auth).catch(err => console.error(err))
     console.log('Logged in as: ',)
-    // base.fetch(`users/${this.props.uid}`)
+    // base.fetch(`users/${this.props.uid}/calorieBudget`, {
+    //   context: this,
+    //   then(calorieBudget){
+    //     if(calorieBudget <= 0) {
+    //       return <Link to="calorieBudget"></Link>
+    //     } else {
+    //       return <Link to="foodSearch"></Link>
+    //     }
+    //   }
+    // })
 }
 
 
