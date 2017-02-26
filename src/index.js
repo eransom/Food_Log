@@ -6,7 +6,6 @@ import SignUp from './components/signUp.js'
 import SignIn from './components/signIn.js'
 import FoodSearch from './components/foodSearch.js'
 import CalorieBudget from './components/calorieBudget.js'
-import MonthlyView from './components/monthlyView.js'
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -17,7 +16,6 @@ ReactDOM.render(
       <Route path="signUp" component={SignUp}/>
       <Route path="calorieBudget" component={CalorieBudget}/>
       <Route path="foodSearch" component={FoodSearch}/>
-      <Route path="monthlyView" component={MonthlyView}/>
     </Route>
   </Router>,
   document.getElementById('root')
