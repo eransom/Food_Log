@@ -15,7 +15,7 @@
     "react-addons-css-transition-group": "^15.4.2",
     "react-addons-transition-group": "^15.4.2",
     "react-bootstrap": "^0.30.7",
-    "react-bootstrap-date-picker": "^4.0.0",
+    "react-day-picker": "^5.0.0",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2",
     "reactstrap": "^4.2.0"

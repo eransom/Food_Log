@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 class CalorieBudget extends Component {
 
 
-
   render () {
     return(
       <div>

@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router'
+// import { Link } from 'react-router'
 import '../App.css'
 import axios from 'axios'
 import base from '../config'
 import { Button } from 'reactstrap';
 import Moment from 'moment'
+import Calendar from './calendar'
 
 
 class FoodSearch extends Component {
@@ -14,7 +15,6 @@ class FoodSearch extends Component {
       results: [],
       foodItems: [],
       budget: 0,
-      remaining: 0
     }
     this.auth = base.auth()
   }
@@ -22,15 +22,13 @@ class FoodSearch extends Component {
 
   componentDidMount (){
     const formattedDT = Moment().format('MMMM Do, YYYY')
-    console.log("uid is: ", `${this.props.uid}`)
 
     base.syncState(`users/${this.props.uid}/meals/${formattedDT}`, {
     context: this,
     state: 'foodItems',
     asArray: true
     });
-    console.log("user id is ", `${this.props.uid}`)
-
+    console.log("uid is ", `${this.props.uid}`)
   }
 
 
@@ -95,10 +93,13 @@ class FoodSearch extends Component {
                  </ul>
                </div>
                <div className="calorieCount">
-                  <input ref={input => this.calGoal = input} />
-                  <button className="setLimitBtn" onClick={this.setCalorieGoal.bind(this)}>Set Cal Limit</button>
-                  <span className="daily-calories">Daily left: {remainingCalories} calories</span>
-                  <span className="daily-calories">Daily Total: {totalCalories} calories</span>
+                  <div className="setLimitFlex">
+                    <input className="setLimitInput" ref={input => this.calGoal = input} />
+                    <button className="setLimitBtn" onClick={this.setCalorieGoal.bind(this)}>Set Cal Goal</button>
+                    <span className="goal">{this.state.budget}</span>
+                  </div>
+                  <span className="daily-calories">Goal Remaining: {Math.floor(remainingCalories)} calories</span>
+                  <span className="daily-calories">Daily Total: {Math.floor(totalCalories)} calories</span>
                </div>
              </div>
     }
@@ -111,6 +112,7 @@ class FoodSearch extends Component {
     })
     console.log('Cal Goal is: ', this.state.budget)
     this.showMealList(budget)
+    this.calGoal.value = ""
   }
 
   // getTotalCalories(budget) {
@@ -188,6 +190,7 @@ class FoodSearch extends Component {
             <input className="searchInput" ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
             <Button color="primary" className="second-button-login"  onClick={this.searchFoodItem.bind(this)}>Search</Button>
           </div>
+          <Calendar/>
           <ul className="searchList">
             {this.state.results.map((result, index) => {
               return (
@@ -203,7 +206,6 @@ class FoodSearch extends Component {
            {this.showMealList()}
          </div>
          <div className="budget">
-           <Link to="monthlyView" className="mealFooter"><h2>To monthly view</h2></Link>
          </div>
       </div>
     )
