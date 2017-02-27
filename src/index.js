@@ -4,7 +4,7 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 import App from './App';
 import SignUp from './components/signUp.js'
 import SignIn from './components/signIn.js'
-import FoodSearch from './components/foodSearch.js'
+import MealList from './components/mealList.js'
 import CalorieBudget from './components/calorieBudget.js'
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -15,7 +15,7 @@ ReactDOM.render(
       <IndexRoute component={SignIn}></IndexRoute>
       <Route path="signUp" component={SignUp}/>
       <Route path="calorieBudget" component={CalorieBudget}/>
-      <Route path="foodSearch" component={FoodSearch}/>
+      <Route path="mealList" component={MealList}/>
     </Route>
   </Router>,
   document.getElementById('root')

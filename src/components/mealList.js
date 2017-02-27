@@ -8,17 +8,16 @@ import Moment from 'moment'
 import Calendar from './calendar'
 
 
-class FoodSearch extends Component {
+class MealList extends Component {
   constructor() {
     super()
     this.state = {
       results: [],
       foodItems: [],
-      budget: 0,
+      budget: 0
     }
     this.auth = base.auth()
   }
-
 
   componentDidMount (){
     const formattedDT = Moment().format('MMMM Do, YYYY')
@@ -31,19 +30,20 @@ class FoodSearch extends Component {
     console.log("uid is ", `${this.props.uid}`)
   }
 
-
   searchFoodItem(e) {
     e.preventDefault()
     let searchFoodItem = this.searchInput.value
     let url = `https://api.nutritionix.com/v1_1/search/${searchFoodItem}?results=0:10&fields=item_name,brand_name,item_id,nf_calories&appId=3f9a6ef4&appKey=1a220dbd4131fc2e9fb3f1b57de58cc7`;
-    axios.get(url).then((response) => {
-      this.setState({
-        results: response.data.hits
-      })
-    console.log('Results are: ', response.data.hits)
-    this.searchInput.value = ""
+    if(searchFoodItem !== "") {
+      axios.get(url).then((response) => {
+        this.setState({
+          results: response.data.hits
+        })
+      console.log('Results are: ', response.data.hits)
+      this.searchInput.value = ""
     })
    }
+  }
 
   addToMealList(result) {
     let pickedItem = result.fields
@@ -56,7 +56,6 @@ class FoodSearch extends Component {
       })
     console.log('this.state.foodItems is: ', newItemsArray)
   }
-
 
   showMealList() {
     var totalCalories = this.state.foodItems.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
@@ -143,7 +142,7 @@ class FoodSearch extends Component {
                <span className="qtyNum">{result.qty}</span>
             </div>
       }
-    }
+   }
 
   increaseQty(result) {
     let newQty = this.state.foodItems.map((foodItem) => {
@@ -212,4 +211,4 @@ class FoodSearch extends Component {
   }
 }
 
-export default FoodSearch
+export default MealList

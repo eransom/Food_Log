@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
-// import base from '../config'
+import base from '../config'
 
 class CalorieBudget extends Component {
 
+  constructor() {
+    super()
+    this.state = {
+      budget: 0
+    }
+  }
+
+  componentDidMount() {
+    base.syncState(`users/${this.props.uid}/calorieBudget`, {
+      context: this,
+      state: 'budget'
+    })
+    console.log('CalorieGoal is: ', this.state.budget)
+  }
+
+  
 
   render () {
     return(
       <div>
-        <h1>Set Your Calorie Limit</h1>
-        <input/>
+        {this.props.children && React.cloneElement(this.props.children, { budget: this.state.budget })}
       </div>
     )
   }
