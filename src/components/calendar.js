@@ -13,6 +13,7 @@ class Calendar extends Component {
   }
 
   handleDayClick(day, {selected}) {
+
     this.setState({
       selectedDay: day
     })

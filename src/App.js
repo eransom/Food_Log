@@ -53,7 +53,7 @@ class App extends Component {
              }
            }
          })
-      hashHistory.push("/foodSearch")
+      hashHistory.push("/mealList")
       }
 
 
