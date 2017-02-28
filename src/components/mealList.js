@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-// import { Link } from 'react-router'
 import '../App.css'
 import axios from 'axios'
 import base from '../config'
@@ -29,6 +28,8 @@ class MealList extends Component {
     });
     console.log("uid is ", `${this.props.uid}`)
   }
+
+
 
   searchFoodItem(e) {
     e.preventDefault()
@@ -94,7 +95,7 @@ class MealList extends Component {
                <div className="calorieCount">
                   <div className="setLimitFlex">
                     <input className="setLimitInput" ref={input => this.calGoal = input} />
-                    <button className="setLimitBtn" onClick={this.setCalorieGoal.bind(this)}>Set Cal Goal</button>
+                    <button className="setLimitBtn" onClick={this.setNewCalorieGoal.bind(this)}>Set Cal Goal</button>
                     <span className="goal">{this.state.budget}</span>
                   </div>
                   <span className="daily-calories">Goal Remaining: {Math.floor(remainingCalories)} calories</span>
@@ -104,7 +105,7 @@ class MealList extends Component {
     }
   }
 
-  setCalorieGoal() {
+  setNewCalorieGoal() {
     let budget = this.calGoal.value
     this.setState({
       budget: budget
@@ -189,7 +190,7 @@ class MealList extends Component {
             <input className="searchInput" ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
             <Button color="primary" className="second-button-login"  onClick={this.searchFoodItem.bind(this)}>Search</Button>
           </div>
-          <Calendar/>
+          <Calendar />
           <ul className="searchList">
             {this.state.results.map((result, index) => {
               return (
