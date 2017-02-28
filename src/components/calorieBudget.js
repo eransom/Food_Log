@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import base from '../config'
+// import base from '../config'
 
 class CalorieBudget extends Component {
 
@@ -10,15 +10,15 @@ class CalorieBudget extends Component {
     }
   }
 
-  componentDidMount() {
-    base.syncState(`users/${this.props.uid}/calorieBudget`, {
-      context: this,
-      state: 'budget'
-    })
-    console.log('CalorieGoal is: ', this.state.budget)
-  }
+  // componentDidMount() {
+  //   base.syncState(`users/${this.props.uid}/calorieBudget`, {
+  //     context: this,
+  //     state: 'budget'
+  //   })
+  //   console.log('CalorieGoal is: ', this.state.budget)
+  // }
 
-  
+
 
   render () {
     return(

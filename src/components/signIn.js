@@ -26,7 +26,7 @@ signIn(e) {
     //     if(calorieBudget <= 0) {
     //       return <Link to="calorieBudget"></Link>
     //     } else {
-    //       return <Link to="foodSearch"></Link>
+    //       return <Link to="mealList"></Link>
     //     }
     //   }
     // })
@@ -45,7 +45,7 @@ signIn(e) {
         <div>Password</div>
         <input className="login" ref={element => this.password = element}/>
         <div>
-        <Link to="foodSearch"><Button color="success" onClick={this.signIn.bind(this)}>Log In</Button></Link>
+        <Link to="mealList"><Button color="success" onClick={this.signIn.bind(this)}>Log In</Button></Link>
         </div>
         </div>
         <div className="bottom-signin">
