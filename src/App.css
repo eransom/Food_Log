@@ -4,10 +4,12 @@
 
 .background-signin {
   background: url(../src/img/bg3.png) no-repeat center center fixed;
+  background-position: 0px -40px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  filter: saturate(111%);
   height: 500px;
   position: relative;
 }
@@ -112,19 +114,20 @@
 .mealDiv {
   height: 600px;
   min-height: 600px;
-  margin-bottom: -100px;
+  margin-bottom: -120px;
 }
 
 .mealHeader {
   color: blue;
+  font-family: 'Lato', Helvetica, sans-serif;
   opacity: .8;
-  font-size: 32px;
+  font-size: 30px;
   margin: 10px;
 }
 
 .mealList {
-  background-color: floralwhite;
-  border: 2px solid floralwhite;
+  background-color: oldlace;
+  border: 2px solid oldlace;
   border-radius: 15px;
   box-shadow: 2px 2px 5px -1px darkgray;
   margin: auto;
@@ -149,6 +152,7 @@
   align-items: center;
   background-color: lavender;
   border: 1px solid midnightblue;
+  border-radius: 5px;
   display: flex;
   font-weight: bolder;
   list-style: none;
@@ -293,10 +297,11 @@
 }
 
 .social-media {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 50px;
   height: 60px;
-  margin: auto;
 }
 
 .brand {
