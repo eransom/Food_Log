@@ -21,6 +21,15 @@ class MealList extends Component {
   componentDidMount (){
     const formattedDT = Moment().format('MMMM Do, YYYY')
 
+    base.fetch(`users/${this.props.uid}/calorieBudget`, {
+      context: this,
+      then(data){
+        this.setState({
+          budget: data
+        })
+      }
+    })
+
     base.syncState(`users/${this.props.uid}/meals/${formattedDT}`, {
     context: this,
     state: 'foodItems',
@@ -63,12 +72,6 @@ class MealList extends Component {
     var remainingCalories = this.state.budget - totalCalories
     console.log('remainingCalories is: ', remainingCalories)
 
-    base.update(`users/${this.props.uid}`, {
-      data: {
-        calorieBudget: this.state.budget
-      }
-    })
-    console.log('this.state.budget = ', this.state.budget)
 
 
     Moment.locale('e')
@@ -112,6 +115,13 @@ class MealList extends Component {
     })
     console.log('Cal Goal is: ', this.state.budget)
     this.showMealList(budget)
+    base.update(`users/${this.props.uid}`, {
+      data: {
+        calorieBudget: budget
+      }
+    })
+    console.log('this.state.budget = ', this.state.budget)
+
     this.calGoal.value = ""
   }
 
