@@ -13,51 +13,39 @@ class SignIn extends Component {
     }
   }
 
-signIn(e) {
-    e.preventDefault()
-    base.authWithPassword({
-     email: this.email.value,
-     password: this.password.value
-   }, this.props.auth).catch(err => console.error(err))
-    console.log('Logged in as: ',)
-    // base.fetch(`users/${this.props.uid}/calorieBudget`, {
-    //   context: this,
-    //   then(calorieBudget){
-    //     if(calorieBudget <= 0) {
-    //       return <Link to="calorieBudget"></Link>
-    //     } else {
-    //       return <Link to="mealList"></Link>
-    //     }
-    //   }
-    // })
-}
-
-
-    render() {
-
-      return (
-        <div className="background-signin">
-        <div className="login-wraper">
-        <div className="head-title">Sign in to <span className="blue">FOOD LOG</span></div>
-        <div className="body-inputs">
-        <div>Email</div>
-        <input className="login" ref={element => this.email = element}/>
-        <div>Password</div>
-        <input className="login" ref={element => this.password = element}/>
-        <div>
-        <Link to="mealList"><Button color="success" onClick={this.signIn.bind(this)}>Log In</Button></Link>
-        </div>
-        </div>
-        <div className="bottom-signin">
-        <h4 className="noAccount">Dont have an account yet?</h4>
-        <Link to="signUp"><Button color="primary">Register</Button></Link>
-        </div>
-        </div>
-
-        </div>
-
-      )
-    }
+  signIn(e) {
+      e.preventDefault()
+      base.authWithPassword({
+       email: this.email.value,
+       password: this.password.value
+     }, this.props.auth).catch(err => console.error(err))
+      console.log('Logged in as: ',)
   }
+
+
+  render() {
+
+    return (
+      <div className="background-signin">
+        <div className="login-wraper">
+          <div className="head-title">Sign in to <span className="blue">FOOD LOG</span></div>
+          <div className="body-inputs">
+          <div>Email</div>
+          <input className="login" ref={element => this.email = element}/>
+          <div>Password</div>
+          <input className="login" ref={element => this.password = element}/>
+          <div>
+          <Link to="mealList"><Button color="success" onClick={this.signIn.bind(this)}>Log In</Button></Link>
+          </div>
+          </div>
+          <div className="bottom-signin">
+          <h4 className="noAccount">Dont have an account yet?</h4>
+          <Link to="signUp"><Button color="primary">Register</Button></Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
 
   export default SignIn;

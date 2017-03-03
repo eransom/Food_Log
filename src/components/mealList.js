@@ -13,13 +13,15 @@ class MealList extends Component {
     this.state = {
       results: [],
       foodItems: [],
-      budget: 0
+      budget: 0,
+      date: {}
     }
     this.auth = base.auth()
   }
 
   componentDidMount (){
     const formattedDT = Moment().format('MMMM Do, YYYY')
+
 
     base.fetch(`users/${this.props.uid}/calorieBudget`, {
       context: this,
@@ -30,12 +32,24 @@ class MealList extends Component {
       }
     })
 
+    base.fetch(`users/${this.props.uid}/meals/${formattedDT}`, {
+      context: this,
+      then(data){
+        this.setState({
+          date: formattedDT
+        })
+      }
+    })
+
+
     base.syncState(`users/${this.props.uid}/meals/${formattedDT}`, {
     context: this,
     state: 'foodItems',
     asArray: true
     });
     console.log("uid is ", `${this.props.uid}`)
+
+
   }
 
 
@@ -74,11 +88,9 @@ class MealList extends Component {
 
 
 
-    Moment.locale('e')
-    const formattedDT = Moment().format('MMMM Do, YYYY')
     if(this.state.foodItems.length !== 0) {
       return <div className="mealList">
-               <h2 className="mealHeader">{formattedDT}</h2>
+               <h2 className="mealHeader">{this.state.date}</h2>
                <div className="mealItemContain">
                   <ul className="mealListUl">
                     {this.state.foodItems.map((result, index) => {
@@ -106,6 +118,7 @@ class MealList extends Component {
                </div>
              </div>
     }
+    console.log('The state of the date is: ', this.state.date)
   }
 
   setNewCalorieGoal() {
@@ -125,22 +138,6 @@ class MealList extends Component {
     this.calGoal.value = ""
   }
 
-  // getTotalCalories(budget) {
-  //   var totalCalories = this.state.foodItems.reduce((total, foodObject) => {return foodObject.qty * foodObject.nf_calories +total}, 0)
-  //   var remainingCalories = budget - totalCalories
-  //   console.log('remainingCalories is: ', remainingCalories)
-  //   console.log('totalCalories is: ', totalCalories)
-  //   console.log('budget is: ', budget)
-  //   if(this.state.foodItems.length !== 0) {
-  //
-  //     return <div className="calorieCount">
-  //              <input ref={input => this.calGoal = input} />
-  //              <button className="setLimitBtn" onClick={this.setCalorieGoal.bind(this)}>Set Cal Limit</button>
-  //              <span className="daily-calories">Budget Left: {remainingCalories} calories</span>
-  //              <span className="daily-calories">DAILY TOTAL: {totalCalories} Calories</span>
-  //            </div>
-  //   }
-  // }
 
   showQuantity(result) {
     if(this.state.foodItems.length !== 0) {
