@@ -104,6 +104,18 @@
   position: absolute;
 }
 
+#calendar p {
+  display: block;
+  font-size: 14px;
+  margin: auto;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+#calendar input {
+  text-align: center;
+}
+
 .mealListPage {
   background-color: #C6E0FF;
   margin-top: -48px;
