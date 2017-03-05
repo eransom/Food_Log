@@ -34,7 +34,6 @@ signUp(e) {
         <div className="background-signup">
           <div className="login-wraper">
           <div className="head-title">Sign Up to <span className="blue">Food Log</span></div>
-
           <div className="body-inputs">
           <div>Email</div>
           <input className="login" ref={element => this.email = element}/>

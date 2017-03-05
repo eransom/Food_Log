@@ -5,7 +5,6 @@ import App from './App';
 import SignUp from './components/signUp.js'
 import SignIn from './components/signIn.js'
 import MealList from './components/mealList.js'
-import CalorieBudget from './components/calorieBudget.js'
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -14,7 +13,6 @@ ReactDOM.render(
     <Route path="/" component={App} >
       <IndexRoute component={SignIn}></IndexRoute>
       <Route path="signUp" component={SignUp}/>
-      <Route path="calorieBudget" component={CalorieBudget}/>
       <Route path="mealList" component={MealList}/>
     </Route>
   </Router>,

@@ -41,17 +41,13 @@ class MealList extends Component {
       }
     })
 
-
     base.syncState(`users/${this.props.uid}/meals/${formattedDT}`, {
     context: this,
     state: 'foodItems',
     asArray: true
     });
     console.log("uid is ", `${this.props.uid}`)
-
-
   }
-
 
 
   searchFoodItem(e) {
@@ -87,7 +83,6 @@ class MealList extends Component {
     console.log('remainingCalories is: ', remainingCalories)
 
 
-
     if(this.state.foodItems.length !== 0) {
       return <div className="mealList">
                <h2 className="mealHeader">{this.state.date}</h2>
@@ -118,7 +113,6 @@ class MealList extends Component {
                </div>
              </div>
     }
-    console.log('The state of the date is: ', this.state.date)
   }
 
   setNewCalorieGoal() {
@@ -187,6 +181,7 @@ class MealList extends Component {
     })
     console.log('After deleteItem mealList is: ', listAfterDelete)
   }
+
 
   render() {
     return (

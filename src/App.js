@@ -32,7 +32,7 @@ class App extends Component {
         console.log(user.email)
             this.setState({
               user: user.email,
-              uid: user.uid,
+              uid: user.uid
             })
           }
           base.fetch(`users/${user.uid}`, {
