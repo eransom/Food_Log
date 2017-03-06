@@ -45,17 +45,22 @@ class Calendar extends Component {
     });
   }
 
-  selectDateToMealList(){
+  getMealList(){
     const formattedDT = Moment().format('MMMM Do, YYYY')
-    base.fetch(`users/${this.props.uid}/meals/${formattedDT}`, {
+    base.fetch(`users/${this.props.uid}/meals`, {
       context: this,
+      asArray: true
+    }).then(data => {
+      console.log(data);
+    }).catch(error => {
+      alert('Not working yet!!')
     })
     console.log(this.state.value)
   }
 
   render() {
     const selectedDay = Moment(this.state.value, 'MMMM Do, YYYY', true).toDate();
-    this.selectDateToMealList()
+    this.getMealList()
     return (
       <div id="calendar">
         <p>
