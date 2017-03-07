@@ -120,16 +120,15 @@ class MealList extends Component {
     this.setState({
       budget: budget
     })
-    console.log('Cal Goal is: ', this.state.budget)
+    console.log('Cal Goal is: ', budget)
     this.showMealList(budget)
     base.update(`users/${this.props.uid}`, {
       data: {
         calorieBudget: budget
       }
     })
-    console.log('this.state.budget = ', this.state.budget)
-
     this.calGoal.value = ""
+    console.log('this.state.budget is: ', this.state.budget)
   }
 
 
@@ -182,6 +181,15 @@ class MealList extends Component {
     console.log('After deleteItem mealList is: ', listAfterDelete)
   }
 
+  getUserMealList(){
+    base.fetch(`users/${this.props.uid}/meals`, {
+      context: this,
+      then(data){
+          console.log(data)
+      }
+    })
+  }
+
 
   render() {
     return (
@@ -192,7 +200,7 @@ class MealList extends Component {
             <input className="searchInput" ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
             <Button color="primary" className="second-button-login"  onClick={this.searchFoodItem.bind(this)}>Search</Button>
           </div>
-          <Calendar />
+          <Calendar userMealList={this.getUserMealList()} />
           <ul className="searchList">
             {this.state.results.map((result, index) => {
               return (

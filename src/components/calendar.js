@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DayPicker from 'react-day-picker'
 import '../DayPicker.css'
-import base from '../config'
+// import base from '../config'
 import Moment from 'moment'
 
 
@@ -46,15 +46,6 @@ class Calendar extends Component {
   }
 
   getMealList(){
-    const formattedDT = Moment().format('MMMM Do, YYYY')
-    base.fetch(`users/${this.props.uid}/meals`, {
-      context: this,
-      asArray: true
-    }).then(data => {
-      console.log(data);
-    }).catch(error => {
-      alert('Not working yet!!')
-    })
     console.log(this.state.value)
   }
 
@@ -77,6 +68,7 @@ class Calendar extends Component {
           initialMonth={ this.state.month }
           selectedDays={ selectedDay }
           onDayClick={ this.handleDayClick }
+          date={this.state.value}
         />
       </div>
     );
