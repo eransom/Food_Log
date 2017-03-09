@@ -185,7 +185,8 @@ class MealList extends Component {
     base.fetch(`users/${this.props.uid}/meals`, {
       context: this,
       then(data){
-          console.log(data)
+          var keys = Object.keys(data)
+          console.log(keys)
       }
     })
   }
@@ -200,7 +201,7 @@ class MealList extends Component {
             <input className="searchInput" ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
             <Button color="primary" className="second-button-login"  onClick={this.searchFoodItem.bind(this)}>Search</Button>
           </div>
-          <Calendar userMealList={this.getUserMealList()} />
+          <Calendar userMealList={this.getUserMealList.bind(this)} />
           <ul className="searchList">
             {this.state.results.map((result, index) => {
               return (

@@ -45,13 +45,15 @@ class Calendar extends Component {
     });
   }
 
-  getMealList(){
+  getInputValue(){
     console.log(this.state.value)
   }
 
+  
+
+
   render() {
     const selectedDay = Moment(this.state.value, 'MMMM Do, YYYY', true).toDate();
-    this.getMealList()
     return (
       <div id="calendar">
         <p>
@@ -68,7 +70,8 @@ class Calendar extends Component {
           initialMonth={ this.state.month }
           selectedDays={ selectedDay }
           onDayClick={ this.handleDayClick }
-          date={this.state.value}
+          userMeals={this.props.userMealList()}
+          inputVal={this.getInputValue()}
         />
       </div>
     );
