@@ -49,7 +49,7 @@ class Calendar extends Component {
     console.log(this.state.value)
   }
 
-  
+
 
 
   render() {
@@ -70,7 +70,7 @@ class Calendar extends Component {
           initialMonth={ this.state.month }
           selectedDays={ selectedDay }
           onDayClick={ this.handleDayClick }
-          userMeals={this.props.userMealList()}
+          userMeals={this.props.userMealList(this.state.value)}
           inputVal={this.getInputValue()}
         />
       </div>
