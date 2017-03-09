@@ -181,12 +181,17 @@ class MealList extends Component {
     console.log('After deleteItem mealList is: ', listAfterDelete)
   }
 
-  getUserMealList(){
+  getUserMealList(calendarValue){
     base.fetch(`users/${this.props.uid}/meals`, {
       context: this,
       then(data){
           var keys = Object.keys(data)
           console.log(keys)
+          return keys.map(result => {
+              if(result === calendarValue) {
+                console.log("matching result is: ", result)
+              }
+          })
       }
     })
   }
