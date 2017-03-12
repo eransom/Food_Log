@@ -182,6 +182,9 @@ class MealList extends Component {
   }
 
   getUserMealList(calendarValue){
+
+    const formattedDT = Moment().format('MMMM Do, YYYY')
+
     base.fetch(`users/${this.props.uid}/meals`, {
       context: this,
       then(data){
@@ -190,6 +193,9 @@ class MealList extends Component {
           return keys.map(result => {
               if(result === calendarValue) {
                 console.log("matching result is: ", result)
+                this.setState({
+                  date: result
+                })
               }
           })
       }
