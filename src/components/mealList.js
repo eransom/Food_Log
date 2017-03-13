@@ -32,16 +32,12 @@ class MealList extends Component {
       }
     })
 
-    base.fetch(`users/${this.props.uid}/meals/${formattedDT}`, {
-      context: this,
-      then(data){
-        this.setState({
-          date: formattedDT
-        })
-      }
+    this.setState({
+      date: formattedDT
     })
 
-    base.syncState(`users/${this.props.uid}/meals/${formattedDT}`, {
+    this.ref = base.syncState(`users/${this.props.uid}/meals/${formattedDT}`, {
+
     context: this,
     state: 'foodItems',
     asArray: true
@@ -182,24 +178,19 @@ class MealList extends Component {
   }
 
   getUserMealList(calendarValue){
+    const dateKey = calendarValue
 
-    const formattedDT = Moment().format('MMMM Do, YYYY')
-
-    base.fetch(`users/${this.props.uid}/meals`, {
-      context: this,
-      then(data){
-          var keys = Object.keys(data)
-          console.log(keys)
-          return keys.map(result => {
-              if(result === calendarValue) {
-                console.log("matching result is: ", result)
-                this.setState({
-                  date: result
-                })
-              }
-          })
-      }
+    this.setState({
+      date: calendarValue
     })
+    base.removeBinding(this.ref)
+    this.ref = base.syncState(`users/${this.props.uid}/meals/${dateKey}`, {
+      context: this,
+      state: 'foodItems',
+      asArray: true,
+      then: console.log('this.state.foodItems is: ', this.state.foodItems)
+      });
+
   }
 
 

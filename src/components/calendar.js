@@ -19,6 +19,14 @@ class Calendar extends Component {
     month: new Date(), // The month to display in the calendar
   };
 
+  componentDidUpdate(prevProp, prevState) {
+    console.log('this.state.value is: ', this.state.value)
+    console.log('prevState is: ', prevState.value)
+    if(this.state.value != prevState.value) {
+    this.props.userMealList(this.state.value)
+    }
+  }
+
   showCurrentDate() {
     this.daypicker.showMonth(this.state.month);
   }
@@ -45,9 +53,6 @@ class Calendar extends Component {
     });
   }
 
-  getInputValue(){
-    console.log(this.state.value)
-  }
 
 
 
@@ -70,8 +75,6 @@ class Calendar extends Component {
           initialMonth={ this.state.month }
           selectedDays={ selectedDay }
           onDayClick={ this.handleDayClick }
-          userMeals={this.props.userMealList(this.state.value)}
-          inputVal={this.getInputValue()}
         />
       </div>
     );
