@@ -63,6 +63,7 @@ class Calendar extends Component {
       <div id="calendar">
         <p>
           <input
+            className="dateInput"
             type="text"
             value={ this.state.value }
             placeholder="YYYY-MM-DD"

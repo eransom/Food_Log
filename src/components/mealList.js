@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import '../App.css'
 import axios from 'axios'
 import base from '../config'
@@ -84,18 +85,25 @@ class MealList extends Component {
                <h2 className="mealHeader">{this.state.date}</h2>
                <div className="mealItemContain">
                   <ul className="mealListUl">
-                    {this.state.foodItems.map((result, index) => {
-                      return (
-                        <li className="mealListItems" key={index}>
-                          {this.showQuantity(result)}
-                          <span className="itemsBrand">{result.brand_name} - </span>
-                          <span className="itemsName">{result.item_name} - </span>
-                          <span className="items"> { result.nf_calories} calories</span>
-                          <span><button className="delete-btn" onClick={this.deleteItem.bind(this, result)}>X</button></span>
-                        </li>
-                        )
-                      })
-                    }
+                    <ReactCSSTransitionGroup
+                      transitionName="fade"
+                      transitionEnterTimeout={300}
+                      transitionLeaveTimeout={200}
+                      transitionAppear={true}
+                      transitionAppearTimeout={300}>
+                      {this.state.foodItems.map((result, index) => {
+                        return (
+                          <li className="mealListItems" key={index}>
+                            {this.showQuantity(result)}
+                            <span className="itemsBrand">{result.brand_name} - </span>
+                            <span className="itemsName">{result.item_name} - </span>
+                            <span className="items"> { result.nf_calories} calories</span>
+                            <span><button className="delete-btn" onClick={this.deleteItem.bind(this, result)}>X</button></span>
+                          </li>
+                          )
+                        })
+                      }
+                    </ReactCSSTransitionGroup>
                  </ul>
                </div>
                <div className="calorieCount">
@@ -200,7 +208,7 @@ class MealList extends Component {
         <button className="signOut" onClick={this.props.onSignOut}>Sign Out</button>
         <div className="mealListPage">
           <div className="search">
-            <input className="searchInput" ref={input => this.searchInput = input} type="text" placeholder="Your Meal" />
+            <input className="searchInput" ref={input => this.searchInput = input} type="text" placeholder="Enter Meal Here" />
             <Button color="primary" className="second-button-login"  onClick={this.searchFoodItem.bind(this)}>Search</Button>
           </div>
           <Calendar userMealList={this.getUserMealList.bind(this)} />
