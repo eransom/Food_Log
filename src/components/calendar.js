@@ -77,6 +77,7 @@ class Calendar extends Component {
           selectedDays={ selectedDay }
           onDayClick={ this.handleDayClick }
         />
+        <h6 className="calendarInstruct">*Click on a date to see another meal list</h6>
       </div>
     );
   }
