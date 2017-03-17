@@ -33,9 +33,9 @@ class SignIn extends Component {
           <div>Email</div>
           <input className="login" ref={element => this.email = element}/>
           <div>Password</div>
-          <input className="login" ref={element => this.password = element}/>
+          <input className="login" type="password" ref={element => this.password = element}/>
           <div>
-          <Link to="mealList"><Button color="success" onClick={this.signIn.bind(this)}>Log In</Button></Link>
+          <Button color="success" onClick={this.signIn.bind(this)}>Log In</Button>
           </div>
           </div>
           <div className="bottom-signin">

@@ -14,10 +14,9 @@ class MealList extends Component {
     this.state = {
       results: [],
       foodItems: [],
-      budget: 0,
+      budget: 2000,
       date: {}
     }
-    this.auth = base.auth()
   }
 
   componentDidMount (){
@@ -106,6 +105,7 @@ class MealList extends Component {
                     </ReactCSSTransitionGroup>
                  </ul>
                </div>
+               <h6 className="goalDefault">*Default goal is set to 2000</h6>
                <div className="calorieCount">
                   <div className="setLimitFlex">
                     <input className="setLimitInput" ref={input => this.calGoal = input} />

@@ -285,6 +285,10 @@
   opacity: .7;
 }
 
+.goalDefault {
+  margin-left: -490px;
+}
+
 .setLimitFlex {
   display: flex;
   align-items: center;

@@ -38,7 +38,7 @@ signUp(e) {
           <div>Email</div>
           <input className="login" ref={element => this.email = element}/>
           <div>Password</div>
-          <input className="login" ref={element => this.password = element}/>
+          <input className="login" type="password" ref={element => this.password = element}/>
           <div>
           <Button color="primary" onClick={this.signUp.bind(this)}>Register</Button>
           </div>
